@@ -1,0 +1,210 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+        <title>Testing</title>
+        <style type="text/css">
+            @-webkit-keyframes scale {
+                from {
+                    -webkit-transform: scale(0.15);
+                    opacity: 0.2;
+                }
+                to { 
+                    -webkit-transform: scale(1);
+                    opacity: 1.0;
+                }
+            }
+            @-webkit-keyframes transition_left {
+                from {
+                    -webkit-transform: translate(-600px, 0px);
+                    opacity: 0.2;
+                }
+                to { 
+                    -webkit-transform: translate(0px, 0px);
+                    opacity: 1.0;
+                }
+            }
+            @-webkit-keyframes transition_right {
+                from {
+                    -webkit-transform: translate(1200px, 0px);
+                    opacity: 0.2;
+                }
+                to { 
+                    -webkit-transform: translate(0px, 0px);
+                    opacity: 1.0;
+                }
+            }
+            @-webkit-keyframes down_emerge {
+                from {
+                    -webkit-transform: translate(0px, -10px);
+                    opacity: 0.2;
+                }
+                to { 
+                    -webkit-transform: translate(0px, 0px);
+                    opacity: 1.0;
+                }
+            }
+            .bldg_fadein {
+                -webkit-animation-name:             scale; 
+                -webkit-animation-duration:         1s;
+                -webkit-animation-iteration-count:  once;
+            }
+            .nav_movein {
+                -webkit-animation-name:             transition_left;
+                -webkit-animation-duration:         1s;
+                -webkit-animation-iteration-count:  once;
+            }
+            .del_movein {
+                -webkit-animation-name:             transition_right;
+                -webkit-animation-duration:         1s;
+                -webkit-animation-iteration-count:  once;
+            }
+            .langsel_fadein {
+                -webkit-animation-name:             down_emerge;
+                -webkit-animation-duration:         1s;
+                -webkit-animation-iteration-count:  once;
+            }
+            #nav_bar {
+                text-align:center;
+                padding-top:1px;
+            }
+            #nav_bar ul li {
+                display:inline;
+                margin-right:40px;
+                font-family:Arial;
+                color:#AAA;
+                font-size:18pt;
+            }
+            #delimeter {
+                border:1px #CCC solid;
+                width:80%;
+            }
+            #hover_ind {
+                border:1px #666 solid;
+                position:absolute;
+            }
+            #lang_sel {
+                text-align:right;
+                margin-right:16%;
+                margin-top:3%;
+                color:#AAA;
+            }
+            #title
+            {
+                position:absolute;
+                top:50%;
+                left:50%;
+                margin-top:-40px;
+                margin-left:-160px;
+            }
+            .upper_case {
+                display:inline;
+                font-size:60pt;
+                font-family:Arial;
+                font-style:bold;
+                color:#F00;
+                margin-left:-6px;
+                margin-right:-6px;
+            }
+            .lower_case {
+                display:inline;
+                font-size:20pt;
+                font-family:Arial;
+                font-style:bold;
+            }
+            .lang {
+                display:inline;
+            }
+        </style>
+        <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+        <script type="text/javascript">
+            var last_left = 0;
+            var hover_ind_anim_inited = false;
+
+            function move_hover_ind(new_left, new_width) {
+                if (hover_ind_anim_inited) {
+                    if (last_left == 0) {
+                        last_left = $("#delimeter").get(0).offsetLeft;
+                        $("#hover_ind").css("left", last_left);
+                    }
+                    
+                    $("#hover_ind").animate( {
+                        left: new_left,
+                        width: new_width
+                    }, 300, function() {
+                    });
+                }
+            }
+
+            function init_hover_indicator() {
+                hover_ind_anim_inited = true;
+                $("#hover_ind").css("top", 62);
+                $("#nav_bar ul li").click(function() {
+                    var left = $(this).get(0).offsetLeft;
+                    var width = $(this).get(0).offsetWidth;
+                    $("#hover_ind").show();
+                    move_hover_ind(left, width);
+                });
+            }
+
+            function init() {
+                $("li").hover(function() {
+                    $(this).css("cursor", "pointer");
+                }, function() {
+                    $(this).css("cursor", "auto");
+                });
+                $(".lang").hover(function() {
+                    $(this).css("cursor", "pointer");
+                }, function() {
+                    $(this).css("cursor", "auto");
+                });
+                $("#title").addClass("bldg_fadein");
+                $("#nav_bar").css("opacity", "0.0");
+                $("#delimeter").css("opacity", "0.0");
+                $("#lang_sel").css("opacity", "0.0");
+                $("#hover_ind").hide();
+                $("#title").get(0).addEventListener("webkitAnimationEnd", function() {
+                    $("#nav_bar").addClass("nav_movein");
+                    $("#delimeter").addClass("del_movein");
+                    $("#nav_bar").css("opacity", "1.0");
+                    $("#delimeter").css("opacity", "1.0");
+                    init_hover_indicator();
+                }, false);
+                $("#nav_bar").get(0).addEventListener("webkitAnimationEnd", function() {
+                    $("#lang_sel").addClass("langsel_fadein");
+                    $("#lang_sel").css("opacity", "1.0");
+                }, false);
+            }
+
+            $(document).ready(init);
+        </script>
+    </head>
+    <body>
+        <div id="nav_bar">
+            <ul>
+                <li id="work">work</li>
+                <li id="research">research</li>
+                <li id="words">words</li>
+                <li id="about">about</li>
+                <li id="contact">contact</li>
+                <li id="employment">employment</li>
+            </ul>
+        </div>
+        <hr id="delimeter"/>
+        <hr id="hover_ind"/>
+        <div id="lang_sel">
+            <span id="lang_en" class="lang">en</span> | 
+            <span id="lang_sc" class="lang">简体</span> | 
+            <span id="lang_tc" class="lang">繁體</span>
+        </div>
+        <div id="title">
+            <div class="upper_case"><strong>B</strong></div>
+            <div class="lower_case">ui</div>
+            <div class="upper_case"><strong>L</strong></div>
+            <div class="lower_case">d-</div>
+            <div class="upper_case"><strong>D</strong></div>
+            <div class="lower_case">esi</div>
+            <div class="upper_case"><strong>G</strong></div>
+            <div class="lower_case">n</div>
+        </div>
+    </body>
+</html>
