@@ -1,0 +1,128 @@
+@-webkit-keyframes scale {
+    from {
+        -webkit-transform: scale(0.15);
+        opacity: 0.2;
+    }
+    to { 
+        -webkit-transform: scale(1);
+        opacity: 1.0;
+    }
+}
+
+@-webkit-keyframes transition_left {
+    from {
+        -webkit-transform: translate(-600px, 0px);
+        opacity: 0.2;
+    }
+    to { 
+        -webkit-transform: translate(0px, 0px);
+        opacity: 1.0;
+    }
+}
+
+@-webkit-keyframes transition_right {
+    from {
+        -webkit-transform: translate(1200px, 0px);
+        opacity: 0.2;
+    }
+    to { 
+        -webkit-transform: translate(0px, 0px);
+        opacity: 1.0;
+    }
+}
+
+@-webkit-keyframes down_emerge {
+    from {
+        -webkit-transform: translate(0px, -10px);
+        opacity: 0.2;
+    }
+    to { 
+        -webkit-transform: translate(0px, 0px);
+        opacity: 1.0;
+    }
+}
+
+.bldg_fadein {
+    -webkit-animation-name:             scale; 
+    -webkit-animation-duration:         1s;
+    -webkit-animation-iteration-count:  once;
+}
+
+.nav_movein {
+    -webkit-animation-name:             transition_left;
+    -webkit-animation-duration:         1s;
+    -webkit-animation-iteration-count:  once;
+}
+
+.del_movein {
+    -webkit-animation-name:             transition_right;
+    -webkit-animation-duration:         1s;
+    -webkit-animation-iteration-count:  once;
+}
+
+.langsel_fadein {
+    -webkit-animation-name:             down_emerge;
+    -webkit-animation-duration:         1s;
+    -webkit-animation-iteration-count:  once;
+}
+
+#nav_bar {
+    text-align:center;
+    padding-top:1px;
+}
+
+#nav_bar ul li {
+    display:inline;
+    margin-right:40px;
+    font-family:Courier New;
+    color:#AAA;
+    font-size:18pt;
+}
+
+#delimeter {
+    border:1px #CCC solid;
+    width:80%;
+}
+
+#hover_ind {
+    border:1px #666 solid;
+    position:absolute;
+}
+
+#lang_sel {
+    text-align:right;
+    margin-right:16%;
+    margin-top:3%;
+    font-family:Verdana;
+    color:#AAA;
+    font-size:10pt;
+}
+
+#title {
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-top:-40px;
+    margin-left:-160px;
+}
+
+.upper_case {
+    display:inline;
+    font-size:60pt;
+    font-family:Arial;
+    font-style:bold;
+    color:#F00;
+    margin-left:-6px;
+    margin-right:-6px;
+}
+
+.lower_case {
+    display:inline;
+    font-size:20pt;
+    font-family:Arial;
+    font-style:bold;
+}
+
+.lang {
+    display:inline;
+}
