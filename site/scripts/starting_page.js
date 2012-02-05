@@ -1,6 +1,7 @@
 var last_left = 0;
 var hover_ind_anim_inited = false;
 
+/*
 function move_hover_ind(new_left, new_width) {
     if (hover_ind_anim_inited) {
         if (last_left == 0) {
@@ -26,8 +27,54 @@ function init_hover_indicator() {
         move_hover_ind(left, width);
     });
 }
+*/
+
+function show_nav_lang() {
+}
+
+function bldg_zoom_in() {
+    $('#title').removeClass('bldg_before_scale');
+    $('#title').addClass('bldg_fadein');
+    $('#title').css('cursor', 'default');
+    setTimeout(function() {
+        $("#nav_bar").addClass("nav_movein");
+        $("#delimeter").addClass("del_movein");
+        $("#nav_bar").css("opacity", "1.0");
+        $("#delimeter").css("opacity", "1.0");
+        $("#nav_bar ul li").css("cursor", "pointer");
+    }, 6000);
+    $('#nav_bar').get(0).addEventListener('webkitAnimationEnd', function() {
+        $('#title').removeClass('bldg_fadein');
+        $('#title').addClass('bldg_fadeout');
+        $("#lang_sel").addClass("langsel_fadein");
+        $("#lang_sel").css("opacity", "1.0");
+        $('#lang_sel').css('cursor', 'pointer');
+    });
+    $('#lang_sel').get(0).addEventListener('webkitAnimationEnd', function() {
+        var title = $('#title');
+        $('#title').remove();
+        $('body').append(title.get(0));
+        $('#title').removeClass('bldg_fadeout');
+        $('#title').addClass('bldg_before_scale');
+    });
+}
 
 function init() {
+    var inited = false;
+
+    $('#title').addClass('bldg_before_scale');
+    $('#nav_bar').css('opacity', '0');
+    $('#delimeter').css('opacity', '0');
+    $('#lang_sel').css('opacity', '0');
+
+    $('#title').click(function() {
+        if (!inited) {
+            bldg_zoom_in();
+            inited = true;
+        }
+    });
+
+    /*
     $("li").hover(function() {
         $(this).css("cursor", "pointer");
     }, function() {
@@ -54,6 +101,7 @@ function init() {
         $("#lang_sel").addClass("langsel_fadein");
         $("#lang_sel").css("opacity", "1.0");
     }, false);
+    */
 }
 
 $(document).ready(init);

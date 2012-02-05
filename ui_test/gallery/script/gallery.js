@@ -1,14 +1,18 @@
 jQuery.fn.gallery = function() {
     var container = $(this);
+
+    var args = arguments[0] || {}; // arguments from the caller
+
     var img_width = 100;
     var scroll_id = 0;
 
-    var img_id = 0;
+    var img_id = 0; // 'src' of the last image to be displayed
     
-    var mouse_clicked_on_img = '';
+    var mouse_clicked_on_img = 0; // 'src' of the image that is displayed (clicked)
 
-    var div_width = container.width();
-    var div_height = container.height();
+    var div_width = args.width || 400;
+    var div_height = args.height || 300;
+
     var div_top = container.position().top;
     var div_left = container.position().left;
 
@@ -18,7 +22,7 @@ jQuery.fn.gallery = function() {
     scroll.css('margin-top', '5px');
 
     var inner_div = container.find('.gallery');
-    var inner_width = inner_div.find('img').length * 100;
+    var inner_width = inner_div.find('img').length * img_width;
     inner_div.css('width', inner_width);
 
     scroll.append(inner_div);
@@ -90,7 +94,7 @@ jQuery.fn.gallery = function() {
     container.prepend('<div id=\'' + container.attr('id') + '_large_display\'></div>');
     var display = $('#' + container.attr('id') + '_large_display');
     var display_width = div_width;
-    var display_height = parseInt(div_width * 0.75);
+    var display_height = parseInt(div_height - scroll.height());
     display.css('width', display_width);
     display.css('height', display_height);
     display.css('overflow', 'hidden');
@@ -109,6 +113,7 @@ jQuery.fn.gallery = function() {
         if (width_ratio < height_ratio) { // tall
             width = width / height_ratio;
             height = height / height_ratio;
+            display.css('text-align', 'right');
         } else { // wide
             width = width / width_ratio;
             height = height / width_ratio;
@@ -121,8 +126,6 @@ jQuery.fn.gallery = function() {
         img.width = width;
         img.height = height;
         display.html(img);
-
-        display.css('text-align', 'center');
     }
 
     imgs.click(function() {
