@@ -1,10 +1,10 @@
 Table Works:
     Columns:
         project name: varchar
-        background link: varchar
+        background image: varchar
         information: varchar
         brief info: varchar
-        images: array of varchar
+        gallery images: varchar (separated by delimeters)
         elavation: varchar
         pdf: varchar
         featured: bool
