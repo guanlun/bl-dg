@@ -1,9 +1,12 @@
 $(function() {
+    $('#work').css('margin-left', '0px');
+    $('#employment').css('margin-right', '0px');
+
     $('#info_view').scroll();
 
     $('#gallery_container').gallery({
         'width': 700,
-        'height': 450,
+        'height': 540,
     });
 
     $('#bg_img img').mousedown(function() { // prevent drag
@@ -15,7 +18,7 @@ $(function() {
     var page_height = $(window).height();
     var page_width = $(window).width();
 
-    var margin_top = (page_height - $('#container').height()) / 2 - 10;
+    var margin_top = (page_height - $('#container').height()) / 2 - 25;
     if (margin_top < 0) {
         margin_top = 0;
     }
@@ -35,7 +38,7 @@ $(function() {
         var page_height = $(window).height();
         var page_width = $(window).width();
 
-        var margin_top = (page_height - $('#container').height()) / 2 - 10;
+        var margin_top = (page_height - $('#container').height()) / 2 - 25;
         if (margin_top < 0) {
             margin_top = 0;
         }

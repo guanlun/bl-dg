@@ -16,7 +16,7 @@ jQuery.fn.gallery = function() {
     var div_top = container.position().top;
     var div_left = container.position().left;
 
-    scroll = $('<div id=\'scroll\'></div>');
+    var scroll = $('<div id=\'scroll\'></div>');
     scroll.css('width', div_width);
     scroll.css('overflow-x', 'hidden');
     scroll.css('margin-top', '5px');
@@ -26,42 +26,51 @@ jQuery.fn.gallery = function() {
     inner_div.css('width', inner_width);
 
     scroll.append(inner_div);
-    container.append(scroll);
 
-    img_divs = inner_div.find('div');
-    img_divs.css('width', '90px');
-    img_divs.css('height', '80px');
+    var img_divs = inner_div.find('div');
+    img_divs.css('width', '70px');
+    img_divs.css('height', '60px');
     img_divs.css('float', 'left');
     img_divs.css('padding-left', '5px');
     img_divs.css('padding-right', '5px');
     img_divs.css('overflow', 'hidden');
-    img_divs.css('background', '#EEE');
 
-    imgs = inner_div.find('img');
+    var imgs = inner_div.find('img');
     imgs.css('opacity', '0.3');
+
+    var img_title = $('<div id=\'img_title\'></div>');
+    img_title.css('width', div_width);
+    img_title.css('font-family', 'Arial');
+    img_title.css('color', '#999');
+    img_title.css('text-align', 'right');
+    img_title.css('padding-top', '2px');
+    img_title.css('font-size', '10pt');
+    img_title.html('someImage.jpg');
+
+    container.append(img_title);
+    container.append(scroll);
 
     imgs.load(function() {
         var img_width = $(this).width();
         var img_height = $(this).height();
-        console.log(img_width, img_height);
         if (img_width > img_height) { // landscape
-            $(this).css('height', '80px');
+            $(this).css('height', '60px');
         } else { // portrait
-            $(this).css('width', '90px');
+            $(this).css('width', '80px');
         }
     });
 
-    imgs.mouseover(function() {
-        $(this).stop();
-        $(this).animate({
+    img_divs.mouseover(function() {
+        $(this).find('img').stop();
+        $(this).find('img').animate({
             opacity: 0.8,
         }, 200);
     });
 
-    imgs.mouseout(function() {
-        $(this).stop();
-        if (mouse_clicked_on_img != $(this).attr('src')) {
-            $(this).animate({
+    img_divs.mouseout(function() {
+        $(this).find('img').stop();
+        if (mouse_clicked_on_img != $(this).find('img').attr('src')) {
+            $(this).find('img').animate({
                 opacity: 0.3,
             }, 200);
         }
@@ -108,7 +117,7 @@ jQuery.fn.gallery = function() {
     container.prepend('<div id=\'' + container.attr('id') + '_large_display\'></div>');
     var display = $('#' + container.attr('id') + '_large_display');
     var display_width = div_width;
-    var display_height = parseInt(div_height - scroll.height());
+    var display_height = div_height - scroll.height();
     display.css('width', display_width);
     display.css('height', display_height);
     display.css('overflow', 'hidden');
@@ -124,11 +133,16 @@ jQuery.fn.gallery = function() {
         var width_ratio = width / display_width;
         var height_ratio = height / display_height;
 
-        if (width_ratio < height_ratio) { // tall
-            width = width / height_ratio;
-            height = height / height_ratio;
-            display.css('text-align', 'right');
-        } else { // wide
+        if (width_ratio < height_ratio) { // relatively portrait
+            if (img.width < img.height) { // portrait
+                width = width / height_ratio;
+                height = height / height_ratio;
+                display.css('text-align', 'right');
+            } else {
+                var margin_top = - (height - display_height) / 2;
+                $(img).css('margin-top', margin_top);
+            }
+        } else { // relatively landscape
             width = width / width_ratio;
             height = height / width_ratio;
             var margin_top = (display_height - height) / 2;
@@ -163,10 +177,12 @@ jQuery.fn.gallery = function() {
                 }, 100);
             });
         }
+        img_title.html($(this).attr('src'));
     });
 
     imgs.eq(0).load(function() { // when the first image is loaded, set it as the display image
-        imgs.eq(0).css('opacity', '0.8');
-        set_img(imgs.eq(0).attr('src'));
+        $(this).css('opacity', '0.8');
+        set_img($(this).attr('src'));
+        img_title.html($(this).attr('src'));
     });
 };
