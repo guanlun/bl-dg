@@ -61,14 +61,6 @@ $(function() {
     $('#work').css('margin-left', '0px');
     $('#employment').css('margin-right', '0px');
 
-    $('#info_view').scroll();
-    $('#brief_view').scroll();
-
-    $('#gallery_container').gallery({
-        'width': 700,
-        'height': 545,
-    });
-
     $('#bg_img img').load(function() {
         img_orig_width = $('#bg_img img').width();
         img_orig_height = $('#bg_img img').height();

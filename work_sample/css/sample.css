@@ -20,7 +20,7 @@ body {
 #bg_img img {
     position:absolute;
     height:inherit;
-    opacity:0.12;
+    opacity:0.015;
 }
 
 #container {
@@ -43,6 +43,10 @@ body {
     font-size:15pt;
 }
 
+#inner_container {
+    height:600px;
+}
+
 #left_container {
     float:left;
     width:270px;
@@ -59,7 +63,7 @@ body {
 }
 
 #info_view {
-    height:240px;
+    height:230px;
     font-family:Helvetica;
     font-size:10pt;
     color:#666;
@@ -68,13 +72,18 @@ body {
 }
 
 #brief_view {
-    height:200px;
+    height:230px;
     font-family:Helvetica;
     font-size:10pt;
     font-style:italic;
     color:#666;
-    margin-top:50px;
+    margin-top:30px;
     margin-bottom:20px;
+}
+
+#brief_view .cate {
+    display:inline;
+    color:#333;
 }
 
 #right_container {
