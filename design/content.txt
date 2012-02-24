@@ -70,27 +70,27 @@ $2,500
 
 
 STRAW-BLURRY FIELDS
-Architects’ Week is an annual week long design-build competition at the Tulane School of Architecture. This year’s program calls for an interactive installation that must be designed and built within on week under US$350. 
+Architects’ Week is an annual week long design-build competition at the Tulane School of Architecture. This year’s program calls for an interactive installation that must be designed and built within on week under US$350.<br />
 Utilizing more than 17,000 straws, Jazzy Li and Eric Baumgartner led a team of 13 students and strung together a blurry architectural space that engages touch, sound, and sight. Twelve panels form two constantly moving curtain walls and fluidity the space in between. The transparency and lightness of the installation allows itself to play with sun, wind, and light conditions. The ephemeral project does not take any static visual, acoustical, or sensual form. Instead, the dematerialization of straws, characterized by porosity and local interconnectivity, creates what Stan Allen calls - ‘field conditions’ – which are defined not by overarching geometrical schemas but by intricate intervals, repetitions, and seriality.
 
-Type
-Architects’ Week First Place
-Status
-Completed in February 2011
-Location
-New Orleans, USA
-Program
-Architectural Installation
-Area
-100 sf / 10 m2
-Design Partner
-Eric Baumgartner
-Photography
-David Armentor 
-Alexandra Bojarski-Stauffer
-Jill Stioll
-Published on Archdaily
-http://www.archdaily.com/113772/architects-week-tulane-school-of-architecture/
+Type &&
+Architects’ Week First Place ##
+Status &&
+Completed in February 2011 ##
+Location &&
+New Orleans, USA ##
+Program &&
+Architectural Installation ##
+Area &&
+100 sf / 10 m2 ##
+Design Partner &&
+Eric Baumgartner ##
+Photography &&
+David Armentor, 
+Alexandra Bojarski-Stauffer, 
+Jill Stioll ##
+Published on Archdaily &&
+http://www.archdaily.com/113772/architects-week-tulane-school-of-architecture/ ##
 
 
 

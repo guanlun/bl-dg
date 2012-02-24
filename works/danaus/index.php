@@ -1,5 +1,5 @@
 <?php
-    include('database.php');
+    include('../database.php');
     connect();
     $uri = $_SERVER["REQUEST_URI"];
     $parts = split('/', $uri);
