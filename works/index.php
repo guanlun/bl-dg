@@ -1,8 +1,3 @@
-<?php
-    include('database.php');
-    connect();
-    $work_arr = get_all_works();
-?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
     <head>
@@ -29,21 +24,15 @@
             <div id='inner_container'>
                 <div id='left_container'>
                     <ul>
-                        <li id='featured'>featured</li>
-                        <li id='status'>status</li>
-                        <li id='category'>category</li>
-                        <li id='chronology'>chronology</li>
-                        <li id='location'>location</li>
+                        <li id='Featured'>featured</li>
+                        <li id='Status'>status</li>
+                        <li id='Category'>category</li>
+                        <li id='Chronology'>chronology</li>
+                        <li id='Location'>location</li>
                     </ul>
                 </div>
                 <div id='middle_container'>
                     <ul>
-                        <?php
-                            for ($i = 0; $i < count($work_arr); $i++) {
-                                $name = strtolower($work_arr[$i]['name']);
-                                echo '<li id=\'' . $name . '\'>' . $name . '</li>';
-                            }
-                        ?>
                     </ul>
                 </div>
                 <div id='right_container'>

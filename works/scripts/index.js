@@ -1,8 +1,10 @@
 var img_orig_width, img_orig_height;
 var page_width, page_height;
 
-var curr_column = 'featured';
+var curr_column = 'Featured';
 var curr_entry;
+
+var work_arr = new Array();
 
 function resize_bg_img() {
     var bg_img = $('#bg_img img');
@@ -53,76 +55,119 @@ function resize_container() {
     $('#container').css('margin-left', margin_left);
 }
 
-function refresh_right_container() {
-    if (curr_column != 'featured') {
-        $.ajax({
-            type: 'POST',
-            url: 'db_ajax.php',
-            data: 'type=entries&column=' + curr_column + '&entry=' + curr_entry,
-            dataType: 'html',
-            success: function(data) {
-                $('#right_container ul li').css('font-weight', 'normal');
-                $('#right_container').find('#' + data.replace(/[ |,|\.]/g, '_')).css('font-weight', 'bold');
+function init_index() {
+    $.ajax({
+        type:'POST',
+        url:'db_ajax.php',
+        success:function(data) {
+            var works = data.split('|---|');
+            for (index in works) {
+                if (works[index] != '') {
+                    var work_strs = works[index].split('||');
+                    var work = new Array();
+                    work['ProjectName'] = work_strs[0];
+                    work['Information'] = work_strs[1];
+                    work['Brief'] = work_strs[2];
+                    work['BackgroundImage'] = work_strs[3];
+                    work['GalleryImages'] = work_strs[4];
+                    work['Caption'] = work_strs[5];
+                    work['Featured'] = work_strs[6];
+                    work['Status'] = work_strs[7];
+                    work['Category'] = work_strs[8];
+                    work['Chronology'] = work_strs[9];
+                    work['Location'] = work_strs[10];
+                    work_arr.push(work);
+                }
             }
-        });
+            init_data();
+        }
+    });
+}
+
+function init_data() {
+    var lists = '';
+    for (index in work_arr) {
+        var value = work_arr[index]['ProjectName'];
+        lists += '<li id=\'' + value.replace(/[ |,|\.]/g, '_') + '\'>' + value + '</li>';
+    }
+    $('#middle_container ul').html(lists);
+
+    curr_entry = work_arr[0]['ProjectName'].replace(/[ |,|\.]/g, '_');
+    $('#left_container ul li').click(function() {
+        curr_column = $(this).attr('id');
+        update_columns();
+        update_entries();
+    });
+
+    $('#middle_container ul li').click(function() {
+        curr_entry = $(this).attr('id');
+        update_entries();
+        update_background();
+    });
+
+    update_columns();
+    update_entries();
+    update_background();
+}
+
+function update_columns() {
+    $('#left_container ul li').css('font-weight', 'normal');
+    $('#left_container').find('#' + curr_column).css('font-weight', 'bold');
+    if (curr_column == 'Featured') {
+        $('#right_container ul').html('');
+    } else {
+        var list = new Array();
+        for (index in work_arr) {
+            var value = work_arr[index][curr_column];
+            list.push('<li id=\'' + value.replace(/[ |,|\.]/g, '_') + '\'>' + value + '</li>');
+        }
+
+        var unique_list = new Array();
+        for (var i = 0; i < list.length; i++) {
+            var same = false;
+            for (var j = 0; j < i; j++) {
+                if (list[j] == list[i]) {
+                    same = true;
+                }
+            }
+            if (!same) {
+                unique_list.push(list[i]);
+            }
+        }
+
+        list_str = '';
+        for (index in unique_list) {
+            list_str += unique_list[index];
+        }
+
+        $('#right_container ul').html(list_str);
     }
 }
 
-function refresh_background() {
-    $.ajax({
-        type: 'POST',
-        url: 'db_ajax.php',
-        data: 'type=bg_img&entry=' + curr_entry,
-        dataType: 'html',
-        success: function(data) {
-            var bg_path = curr_entry.toLowerCase().replace(/[ |,|\.]/g, '_') + '/images/' + data;
+function update_entries() {
+    $('#middle_container ul li').css('font-weight', 'normal');
+    $('#middle_container').find('#' + curr_entry).css('font-weight', 'bold');
+    for (index in work_arr) {
+        if (work_arr[index]['ProjectName'].replace(/[ |,|\.]/g, '_') == curr_entry) { // get the correct entry
+            if (curr_column != 'Featured') {
+                var value = work_arr[index][curr_column];
+                $('#right_container ul li').css('font-weight', 'normal');
+                $('#right_container').find('#' + value.replace(/[ |,|\.]/g, '_')).css('font-weight', 'bold');
+            }
+        }
+    }
+}
+
+function update_background() {
+    for (index in work_arr) {
+        if (work_arr[index]['ProjectName'].replace(/[ |,|\.]/g, '_') == curr_entry) { // get the correct entry
+            var bg_path = curr_entry.toLowerCase() + '/images/' + work_arr[index]['BackgroundImage'];
             $('#bg_img').html('<img src=\'' + bg_path + '\' />');
             img_orig_width = $('#bg_img img').width();
             img_orig_height = $('#bg_img img').height();
             resize_bg_img();
         }
-    });
-}
-
-function init_index() {
-    $('#featured').css('font-weight', 'bold');
-    $('#left_container ul li').click(function() {
-        curr_column = $(this).attr('id');
-        $('#left_container ul li').css('font-weight', 'normal');
-        $(this).css('font-weight', 'bold');
-
-        $.ajax({
-            type: 'POST',
-            url: 'db_ajax.php',
-            data: 'type=columns&column=' + curr_column,
-            dataType: 'html',
-            success: function(data) {
-                var value_arr = data.split(';');
-                var html_content = '<ul>';
-                for (index in value_arr) {
-                    if (value_arr[index] != '') {
-                        var val = value_arr[index];
-                        html_content += '<li id=\'' + val.replace(/[ |,|\.]/g, '_') + '\'>' + val + '</li>';
-                    }
-                }
-                html_content += '</ul>';
-                $('#right_container').html(html_content);
-                refresh_right_container();
-            }
-        });
-    });
-
-    curr_entry = $('#middle_container ul li').eq(0).attr('id');
-    $('#middle_container ul li').eq(0).css('font-weight', 'bold');
-    $('#middle_container ul li').click(function() {
-        curr_entry = $(this).attr('id');
-        $('#middle_container ul li').css('font-weight', 'normal');
-        $(this).css('font-weight', 'bold');
-        refresh_right_container();
-        refresh_background();
-    });
-
-    refresh_background();
+    }
 }
 
 $(function() {
