@@ -99,10 +99,14 @@ function init_data() {
         update_entries();
     });
 
-    $('#middle_container ul li').click(function() {
+    $('#middle_container ul li').mouseover(function() {
         curr_entry = $(this).attr('id');
         update_entries();
         update_background();
+    });
+
+    $('#middle_container ul li').click(function() {
+        window.location = $(this).attr('id').toLowerCase();
     });
 
     update_columns();
@@ -111,8 +115,8 @@ function init_data() {
 }
 
 function update_columns() {
-    $('#left_container ul li').css('font-weight', 'normal');
-    $('#left_container').find('#' + curr_column).css('font-weight', 'bold');
+    $('#left_container ul li').css('color', '#666');
+    $('#left_container').find('#' + curr_column).css('color', '#333');
     if (curr_column == 'Featured') {
         $('#right_container ul').html('');
     } else {
@@ -145,14 +149,14 @@ function update_columns() {
 }
 
 function update_entries() {
-    $('#middle_container ul li').css('font-weight', 'normal');
-    $('#middle_container').find('#' + curr_entry).css('font-weight', 'bold');
+    $('#middle_container ul li').css('color', '#666');
+    $('#middle_container').find('#' + curr_entry).css('color', '#333');
     for (index in work_arr) {
         if (work_arr[index]['ProjectName'].replace(/[ |,|\.]/g, '_') == curr_entry) { // get the correct entry
             if (curr_column != 'Featured') {
                 var value = work_arr[index][curr_column];
-                $('#right_container ul li').css('font-weight', 'normal');
-                $('#right_container').find('#' + value.replace(/[ |,|\.]/g, '_')).css('font-weight', 'bold');
+                $('#right_container ul li').css('color', '#666');
+                $('#right_container').find('#' + value.replace(/[ |,|\.]/g, '_')).css('color', '#333');
             }
         }
     }

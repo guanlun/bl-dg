@@ -44,10 +44,11 @@ body {
 #left_container {
     font-family:Helvetica;
     float:left;
-    width:400px;
+    width:350px;
 }
 
 #left_container ul li {
+    margin-bottom:10px;
     cursor:default;
 }
 
@@ -62,6 +63,7 @@ ul {
 }
 
 #middle_container ul li {
+    margin-bottom:10px;
     cursor:default;
 }
 
@@ -71,6 +73,7 @@ ul {
 }
 
 #right_container ul li {
+    margin-bottom:10px;
     cursor:default;
 }
 
