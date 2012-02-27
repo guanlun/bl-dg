@@ -173,7 +173,7 @@ jQuery.fn.gallery = function() {
             }, 100, function() {
                 set_img(src);
                 display.animate( {
-                    opacity: 0.8,
+                    opacity: 1.0,
                 }, 100);
             });
         }

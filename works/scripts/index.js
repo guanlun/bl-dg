@@ -6,6 +6,12 @@ var curr_entry;
 
 var work_arr = new Array();
 
+var middle_dot_count = 0; // count the dots for animation in the middle container
+var middle_dot_anim_id = 0;
+
+var right_dot_count = 0; // count the dots for animation in the right container
+var right_dot_anim_id = 0;
+
 function resize_bg_img() {
     var bg_img = $('#bg_img img');
     
@@ -105,6 +111,10 @@ function init_data() {
         update_background();
     });
 
+    $('#middle_container ul li').mouseout(function() {
+        $(this).text(remove_ending_dots($(this).text()));
+    });
+
     $('#middle_container ul li').click(function() {
         window.location = $(this).attr('id').toLowerCase();
     });
@@ -114,9 +124,19 @@ function init_data() {
     update_background();
 }
 
+function remove_ending_dots(str) {
+    while (str[str.length - 1] == '.') {
+        str = str.substring(0, str.length - 1);
+    }
+    return str;
+}
+
 function update_columns() {
     $('#left_container ul li').css('color', '#666');
+    $('#left_container ul li').css('font-weight', 'normal');
     $('#left_container').find('#' + curr_column).css('color', '#333');
+    $('#left_container').find('#' + curr_column).css('font-weight', 'bold');
+
     if (curr_column == 'Featured') {
         $('#right_container ul').html('');
     } else {
@@ -149,14 +169,49 @@ function update_columns() {
 }
 
 function update_entries() {
-    $('#middle_container ul li').css('color', '#666');
-    $('#middle_container').find('#' + curr_entry).css('color', '#333');
+    middle_dot_count = 0;
+    right_dot_count = 0;
+    var entries = $('#middle_container ul li');
+    var act_entry = $('#middle_container').find('#' + curr_entry);
+    entries.css('color', '#666');
+    entries.css('font-weight', 'normal');
+    act_entry.css('color', '#333');
+    act_entry.css('font-weight', 'bold');
+
+    for (index in entries) {
+        entries.eq(index).text(remove_ending_dots(entries.eq(index).text()));
+    }
+
+    clearInterval(middle_dot_anim_id);
+    middle_dot_anim_id = setInterval(function() {
+        if (middle_dot_count < 3) {
+            act_entry.text(act_entry.text() + '.');
+            middle_dot_count++;
+        }
+    }, 300);
+
     for (index in work_arr) {
         if (work_arr[index]['ProjectName'].replace(/[ |,|\.]/g, '_') == curr_entry) { // get the correct entry
             if (curr_column != 'Featured') {
                 var value = work_arr[index][curr_column];
-                $('#right_container ul li').css('color', '#666');
-                $('#right_container').find('#' + value.replace(/[ |,|\.]/g, '_')).css('color', '#333');
+                var lists = $('#right_container ul li');
+                var curr = $('#right_container').find('#' + value.replace(/[ |,|\.]/g, '_'));
+                lists.css('color', '#666');
+                lists.css('font-weight', 'normal')
+                curr.css('color', '#333');
+                curr.css('font-weight', 'bold');
+
+                for (index in lists) {
+                    lists.eq(index).text(remove_ending_dots(lists.eq(index).text()));
+                }
+
+                clearInterval(right_dot_anim_id);
+                right_dot_anim_id = setInterval(function() {
+                    if (right_dot_count < 3) {
+                        curr.text(curr.text() + '.');
+                        right_dot_count++;
+                    }
+                }, 300);
             }
         }
     }
@@ -166,10 +221,21 @@ function update_background() {
     for (index in work_arr) {
         if (work_arr[index]['ProjectName'].replace(/[ |,|\.]/g, '_') == curr_entry) { // get the correct entry
             var bg_path = curr_entry.toLowerCase() + '/images/' + work_arr[index]['BackgroundImage'];
-            $('#bg_img').html('<img src=\'' + bg_path + '\' />');
-            img_orig_width = $('#bg_img img').width();
-            img_orig_height = $('#bg_img img').height();
-            resize_bg_img();
+            $('#bg_img img').stop();
+            $('#bg_img img').animate({
+                opacity: 0.0,
+            }, 150, function() {
+                $('#bg_img').html('<img src=\'' + bg_path + '\' />');
+                $('#bg_img').css('opacity', '0.0');
+                $('#bg_img').animate({
+                    opacity:0.75,
+                }, 150);
+                $('#bg_img img').load(function() {
+                    img_orig_width = $('#bg_img img').width();
+                    img_orig_height = $('#bg_img img').height();
+                    resize_bg_img();
+                });
+            });
         }
     }
 }

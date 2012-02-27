@@ -21,6 +21,7 @@ body {
     position:absolute;
     top:0px;
     width:1024px;
+    font-family:Helvetica;
 }
 
 #nav_bar {
@@ -32,7 +33,6 @@ body {
     display:inline;
     margin-left:52px;
     margin-right:52px;
-    font-family:Helvetica;
     color:#AAA;
     font-size:15pt;
 }
@@ -50,7 +50,6 @@ body {
 }
 
 #title_view {
-    font-family:Helvetica;
     font-size:14pt;
     margin-top:15px;
     color:#333;
@@ -58,7 +57,6 @@ body {
 
 #info_view {
     height:230px;
-    font-family:Helvetica;
     font-size:10pt;
     color:#666;
     text-align:justify;
@@ -67,7 +65,6 @@ body {
 
 #brief_view {
     height:230px;
-    font-family:Helvetica;
     font-size:10pt;
     font-style:italic;
     color:#666;
@@ -88,7 +85,6 @@ body {
 
 #lang_sel {
     text-align:right;
-    font-family:Helvetica;
     color:#AAA;
     font-size:9pt;
 }

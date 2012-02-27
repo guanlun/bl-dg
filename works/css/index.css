@@ -21,34 +21,34 @@ body {
     position:absolute;
     top:0px;
     width:1024px;
+    font-family:Helvetica;
 }
 
 #nav_bar {
     height:24px;
-    border-bottom:1px solid #AAA;
+    border-bottom:1px solid #666;
 }
 
 #nav_bar ul li {
     display:inline;
     margin-left:52px;
     margin-right:52px;
-    font-family:Helvetica;
-    color:#AAA;
+    color:#666;
     font-size:15pt;
 }
 
 #inner_container {
+    margin-top:10px;
     height:600px;
 }
 
 #left_container {
-    font-family:Helvetica;
     float:left;
     width:350px;
 }
 
 #left_container ul li {
-    margin-bottom:10px;
+    margin-bottom:20px;
     cursor:default;
 }
 
@@ -57,30 +57,27 @@ ul {
 }
 
 #middle_container {
-    font-family:Helvetica;
     float:left;
     width:400px;
 }
 
 #middle_container ul li {
-    margin-bottom:10px;
+    margin-bottom:30px;
     cursor:default;
 }
 
 #right_container {
-    font-family:Helvetica;
     float:left;
 }
 
 #right_container ul li {
-    margin-bottom:10px;
+    margin-bottom:20px;
     cursor:default;
 }
 
 #lang_sel {
     text-align:right;
-    font-family:Helvetica;
-    color:#AAA;
+    color:#666;
     font-size:9pt;
 }
 
