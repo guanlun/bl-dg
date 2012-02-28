@@ -12,6 +12,8 @@ var middle_dot_anim_id = 0;
 var right_dot_count = 0; // count the dots for animation in the right container
 var right_dot_anim_id = 0;
 
+var last_entry = ''; // remember the last entry to avoid refresh background image when mouse moves onto the same one
+
 function resize_bg_img() {
     var bg_img = $('#bg_img img');
     
@@ -109,10 +111,6 @@ function init_data() {
         curr_entry = $(this).attr('id');
         update_entries();
         update_background();
-    });
-
-    $('#middle_container ul li').mouseout(function() {
-        $(this).text(remove_ending_dots($(this).text()));
     });
 
     $('#middle_container ul li').click(function() {
@@ -218,26 +216,29 @@ function update_entries() {
 }
 
 function update_background() {
-    for (index in work_arr) {
-        if (work_arr[index]['ProjectName'].replace(/[ |,|\.]/g, '_') == curr_entry) { // get the correct entry
-            var bg_path = curr_entry.toLowerCase() + '/images/' + work_arr[index]['BackgroundImage'];
-            $('#bg_img img').stop();
-            $('#bg_img img').animate({
-                opacity: 0.0,
-            }, 150, function() {
-                $('#bg_img').html('<img src=\'' + bg_path + '\' />');
-                $('#bg_img').css('opacity', '0.0');
-                $('#bg_img').animate({
-                    opacity:0.75,
-                }, 150);
-                $('#bg_img img').load(function() {
-                    img_orig_width = $('#bg_img img').width();
-                    img_orig_height = $('#bg_img img').height();
-                    resize_bg_img();
+    if (last_entry != curr_entry) {
+        for (index in work_arr) {
+            if (work_arr[index]['ProjectName'].replace(/[ |,|\.]/g, '_') == curr_entry) { // get the correct entry
+                var bg_path = curr_entry.toLowerCase() + '/images/' + work_arr[index]['BackgroundImage'];
+                $('#bg_img img').stop();
+                $('#bg_img img').animate({
+                    opacity: 0.0,
+                }, 150, function() {
+                    $('#bg_img').html('<img src=\'' + bg_path + '\' />');
+                    $('#bg_img').css('opacity', '0.0');
+                    $('#bg_img img').load(function() {
+                        img_orig_width = $('#bg_img img').width();
+                        img_orig_height = $('#bg_img img').height();
+                        resize_bg_img();
+                        $('#bg_img').animate({
+                            opacity:0.75,
+                        }, 150);
+                    });
                 });
-            });
+            }
         }
     }
+    last_entry = curr_entry;
 }
 
 $(function() {
@@ -253,10 +254,10 @@ $(function() {
 
     resize_container();
     
+    init_index();
+
     $(window).resize(function() {
         resize_bg_img();
         resize_container();
     });
-
-    init_index();
 });

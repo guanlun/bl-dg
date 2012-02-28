@@ -44,7 +44,8 @@ body {
 
 #left_container {
     float:left;
-    width:350px;
+    width:340px;
+    margin-top:30px;
 }
 
 #left_container ul li {
@@ -58,7 +59,7 @@ ul {
 
 #middle_container {
     float:left;
-    width:400px;
+    width:440px;
 }
 
 #middle_container ul li {
@@ -68,6 +69,7 @@ ul {
 
 #right_container {
     float:left;
+    margin-top:30px;
 }
 
 #right_container ul li {

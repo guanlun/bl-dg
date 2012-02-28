@@ -45,7 +45,7 @@ jQuery.fn.gallery = function() {
     img_title.css('text-align', 'right');
     img_title.css('padding-top', '2px');
     img_title.css('font-size', '10pt');
-    img_title.html('someImage.jpg');
+    img_title.html(' ');
 
     container.append(img_title);
     container.append(scroll);
