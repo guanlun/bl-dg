@@ -31,9 +31,10 @@ jQuery.fn.gallery = function() {
     img_divs.css('width', '70px');
     img_divs.css('height', '60px');
     img_divs.css('float', 'left');
-    img_divs.css('padding-left', '5px');
-    img_divs.css('padding-right', '5px');
+    img_divs.css('margin-left', '5px');
+    img_divs.css('margin-right', '5px');
     img_divs.css('overflow', 'hidden');
+    img_divs.css('border', '1px solid #AAA');
 
     var imgs = inner_div.find('img');
     imgs.css('opacity', '0.3');
@@ -44,7 +45,7 @@ jQuery.fn.gallery = function() {
     img_title.css('color', '#999');
     img_title.css('text-align', 'right');
     img_title.css('padding-top', '2px');
-    img_title.css('font-size', '10pt');
+    img_title.css('font-size', '8pt');
     img_title.html(' ');
 
     container.append(img_title);

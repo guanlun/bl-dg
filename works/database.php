@@ -1,6 +1,7 @@
 <?php
     function connect() {
         $con = mysql_connect('localhost', 'root', 'mysqlpass') or die('cannot connect to the database');
+        mysql_query("SET NAMES 'utf8'");
         $db = mysql_select_db('bldg_db') or die('cannot select database');
     }
 
@@ -25,7 +26,7 @@
     }
 
     function get_all_works() {
-        $query = 'SELECT * FROM `Work`';
+        $query = 'SELECT * FROM `Work` ORDER BY `ID`';
         $result = mysql_query($query);
         $work_arr = array();
         while ($row = mysql_fetch_array($result)) {

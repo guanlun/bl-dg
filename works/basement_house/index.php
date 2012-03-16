@@ -5,10 +5,6 @@
     $parts = split('/', $uri);
     $name = $parts[count($parts) - 2];
     $data = get_work_by_name($name);
-
-    $bg_data = $data['bgimg'];
-    $bg_imgs = split(';', $bg_data);
-    $bg = $bg_imgs[array_rand($bg_imgs)];
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -23,7 +19,7 @@
     </head>
     <body>
         <div id='bg_img'>
-            <img src='images/<?php echo $bg; ?>' />
+            <img src='images/<?php echo $data['bgimg']; ?>' />
         </div>
         <div id='container'>
             <div id="nav_bar">

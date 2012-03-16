@@ -2,9 +2,12 @@ var img_orig_width, img_orig_height;
 var page_width, page_height;
 
 var curr_column = 'Featured';
-var curr_entry;
+// var curr_entry;
+var curr_id;
+var curr_dir;
 
 var work_arr = new Array();
+var bg_img_arr = new Array();
 
 var middle_dot_count = 0; // count the dots for animation in the middle container
 var middle_dot_anim_id = 0;
@@ -12,7 +15,8 @@ var middle_dot_anim_id = 0;
 var right_dot_count = 0; // count the dots for animation in the right container
 var right_dot_anim_id = 0;
 
-var last_entry = ''; // remember the last entry to avoid refresh background image when mouse moves onto the same one
+var last_entry = ''; // remember the last entry to avoid refresh 5ackground image when mouse moves onto the same one
+var last_id;
 
 function resize_bg_img() {
     var bg_img = $('#bg_img img');
@@ -73,17 +77,19 @@ function init_index() {
                 if (works[index] != '') {
                     var work_strs = works[index].split('||');
                     var work = new Array();
-                    work['ProjectName'] = work_strs[0];
-                    work['Information'] = work_strs[1];
-                    work['Brief'] = work_strs[2];
-                    work['BackgroundImage'] = work_strs[3];
-                    work['GalleryImages'] = work_strs[4];
-                    work['Caption'] = work_strs[5];
-                    work['Featured'] = work_strs[6];
-                    work['Status'] = work_strs[7];
-                    work['Category'] = work_strs[8];
-                    work['Chronology'] = work_strs[9];
-                    work['Location'] = work_strs[10];
+                    work['ID'] = work_strs[0];
+                    work['ProjectName'] = work_strs[1];
+                    work['Information'] = work_strs[2];
+                    work['Brief'] = work_strs[3];
+                    work['BackgroundImage'] = work_strs[4];
+                    work['GalleryImages'] = work_strs[5];
+                    work['Caption'] = work_strs[6];
+                    work['Featured'] = work_strs[7];
+                    work['Status'] = work_strs[8];
+                    work['Category'] = work_strs[9];
+                    work['Chronology'] = work_strs[10];
+                    work['Location'] = work_strs[11];
+                    work['Directory'] = work_strs[12];
                     work_arr.push(work);
                 }
             }
@@ -92,15 +98,28 @@ function init_index() {
     });
 }
 
+function load_bg_imgs() {
+    for (index in work_arr) {
+        if (work_arr[index] != '') {
+            var img = new Image();
+            img.src = work_arr[index]['Directory'] + '/images/' + work_arr[index]['BackgroundImage'];
+            bg_img_arr.push(img.src);
+        }
+    }
+    $('body').css('visibility', 'visible');
+}
+
 function init_data() {
     var lists = '';
     for (index in work_arr) {
         var value = work_arr[index]['ProjectName'];
-        lists += '<li id=\'' + value.replace(/[ |,|\.]/g, '_') + '\'>' + value + '</li>';
+        lists += '<li id=\'' + work_arr[index]['ID'] + '\'>' + value + '</li>';
     }
     $('#middle_container ul').html(lists);
 
-    curr_entry = work_arr[0]['ProjectName'].replace(/[ |,|\.]/g, '_');
+    // curr_entry = work_arr[0]['ProjectName'].replace(/[ |,|\.|\(|\)]/g, '_');
+    curr_id = parseInt(work_arr[0]['ID']);
+    curr_dir = work_arr[0]['Directory'];
     $('#left_container ul li').click(function() {
         curr_column = $(this).attr('id');
         update_columns();
@@ -108,13 +127,22 @@ function init_data() {
     });
 
     $('#middle_container ul li').mouseover(function() {
-        curr_entry = $(this).attr('id');
+        // curr_entry = $(this).attr('id');
+        curr_id = parseInt($(this).attr('id'));
+        curr_dir = work_arr[curr_id];
+
         update_entries();
         update_background();
     });
 
     $('#middle_container ul li').click(function() {
-        window.location = $(this).attr('id').toLowerCase();
+        for (index in work_arr) {
+            if (parseInt(work_arr[index]['ID']) == curr_id) {
+                if (work_arr[index]['Featured'] == 1) {
+                    window.location = work_arr[index]['Directory'];
+                }
+            }
+        }
     });
 
     update_columns();
@@ -130,9 +158,9 @@ function remove_ending_dots(str) {
 }
 
 function update_columns() {
-    $('#left_container ul li').css('color', '#666');
+    // $('#left_container ul li').css('color', '#000'); // 666
     $('#left_container ul li').css('font-weight', 'normal');
-    $('#left_container').find('#' + curr_column).css('color', '#333');
+    // $('#left_container').find('#' + curr_column).css('color', '#000'); // 333
     $('#left_container').find('#' + curr_column).css('font-weight', 'bold');
 
     if (curr_column == 'Featured') {
@@ -141,7 +169,7 @@ function update_columns() {
         var list = new Array();
         for (index in work_arr) {
             var value = work_arr[index][curr_column];
-            list.push('<li id=\'' + value.replace(/[ |,|\.]/g, '_') + '\'>' + value + '</li>');
+            list.push('<li id=\'' + value.replace(/[ |,|\.|\(|\)]/g, '_') + '\'>' + value + '</li>');
         }
 
         var unique_list = new Array();
@@ -157,6 +185,10 @@ function update_columns() {
             }
         }
 
+        if (curr_column == 'Chronology') {
+            unique_list = unique_list.sort();
+        }
+
         list_str = '';
         for (index in unique_list) {
             list_str += unique_list[index];
@@ -167,13 +199,21 @@ function update_columns() {
 }
 
 function update_entries() {
+    var featured;
+    for (index in work_arr) {
+        if (work_arr[index]['ID'] == curr_id) {
+            featured = work_arr[index]['Featured'];
+        }
+    }
+
     middle_dot_count = 0;
     right_dot_count = 0;
     var entries = $('#middle_container ul li');
-    var act_entry = $('#middle_container').find('#' + curr_entry);
-    entries.css('color', '#666');
+    var act_entry = $('#middle_container').find('#' + curr_id);
+    // entries.css('color', '#000'); // 666 originally 
     entries.css('font-weight', 'normal');
-    act_entry.css('color', '#333');
+    entries.css('cursor', 'default');
+    // act_entry.css('color', '#000'); // 333 originally
     act_entry.css('font-weight', 'bold');
 
     for (index in entries) {
@@ -181,22 +221,32 @@ function update_entries() {
     }
 
     clearInterval(middle_dot_anim_id);
-    middle_dot_anim_id = setInterval(function() {
-        if (middle_dot_count < 3) {
-            act_entry.text(act_entry.text() + '.');
-            middle_dot_count++;
-        }
-    }, 300);
+
+    if (featured == 1) { // featured
+        act_entry.css('cursor', 'pointer');
+        middle_dot_anim_id = setInterval(function() {
+            if (middle_dot_count < 3) {
+                act_entry.text(act_entry.text() + '.');
+                middle_dot_count++;
+            }
+        }, 300);
+    } else { // not featured
+        var entries = $('#middle_container ul li');
+        var act_entry = $('#middle_container').find('#' + curr_id);
+        entries.css('font-weight', 'normal');
+        act_entry.css('font-weight', 'bold');
+    }
 
     for (index in work_arr) {
-        if (work_arr[index]['ProjectName'].replace(/[ |,|\.]/g, '_') == curr_entry) { // get the correct entry
+        // if (work_arr[index]['ProjectName'].replace(/[ |,|\.|\(|\)]/g, '_') == curr_entry) { // get the correct entry
+        if (work_arr[index]['ID'] == curr_id) { // get the correct entry
             if (curr_column != 'Featured') {
                 var value = work_arr[index][curr_column];
                 var lists = $('#right_container ul li');
-                var curr = $('#right_container').find('#' + value.replace(/[ |,|\.]/g, '_'));
-                lists.css('color', '#666');
+                var curr = $('#right_container').find('#' + value.replace(/[ |,|\.|\(|\)]/g, '_'));
+                // lists.css('color', '#000'); // 666
                 lists.css('font-weight', 'normal')
-                curr.css('color', '#333');
+                // curr.css('color', '#000'); // 333
                 curr.css('font-weight', 'bold');
 
                 for (index in lists) {
@@ -204,44 +254,59 @@ function update_entries() {
                 }
 
                 clearInterval(right_dot_anim_id);
-                right_dot_anim_id = setInterval(function() {
-                    if (right_dot_count < 3) {
-                        curr.text(curr.text() + '.');
-                        right_dot_count++;
-                    }
-                }, 300);
+                if (featured == 1) {
+                    right_dot_anim_id = setInterval(function() {
+                        if (right_dot_count < 3) {
+                            curr.text(curr.text() + '.');
+                            right_dot_count++;
+                        }
+                    }, 300);
+                }
             }
         }
     }
 }
 
 function update_background() {
-    if (last_entry != curr_entry) {
+    // if (last_entry != curr_entry) {
+    if (last_id != curr_id) {
         for (index in work_arr) {
-            if (work_arr[index]['ProjectName'].replace(/[ |,|\.]/g, '_') == curr_entry) { // get the correct entry
-                var bg_path = curr_entry.toLowerCase() + '/images/' + work_arr[index]['BackgroundImage'];
+            if (work_arr[index]['ID'] == curr_id) { // get the correct entry
+                var featured = work_arr[index]['Featured'];
+                var bg_data = work_arr[index]['BackgroundImage'];
+                var bg_imgs = bg_data.split(';');
+                var bg = bg_imgs[Math.floor(Math.random() * bg_imgs.length)];
+                var bg_path;
+                if (featured == 1) {
+                    bg_path = work_arr[index]['Directory'] + '/images/' + bg;
+                }
                 $('#bg_img img').stop();
                 $('#bg_img img').animate({
                     opacity: 0.0,
                 }, 150, function() {
-                    $('#bg_img').html('<img src=\'' + bg_path + '\' />');
-                    $('#bg_img').css('opacity', '0.0');
-                    $('#bg_img img').load(function() {
-                        img_orig_width = $('#bg_img img').width();
-                        img_orig_height = $('#bg_img img').height();
-                        resize_bg_img();
-                        $('#bg_img').animate({
-                            opacity:0.75,
-                        }, 150);
-                    });
+                    if (featured == 1) {
+                        $('#bg_img').html('<img src=\'' + bg_path + '\' />');
+                        $('#bg_img').css('opacity', '0.0');
+                        $('#bg_img img').load(function() {
+                            img_orig_width = $('#bg_img img').width();
+                            img_orig_height = $('#bg_img img').height();
+                            resize_bg_img();
+                            $('#bg_img').animate({
+                                opacity:0.75,
+                            }, 150);
+                        });
+                    }
                 });
             }
         }
     }
-    last_entry = curr_entry;
+    // last_entry = curr_entry;
+    last_id = curr_id;
 }
 
 $(function() {
+    load_bg_imgs();
+
     page_height = $(window).height();
     page_width = $(window).width();
 
@@ -254,10 +319,14 @@ $(function() {
 
     resize_container();
     
-    init_index();
-
     $(window).resize(function() {
         resize_bg_img();
         resize_container();
     });
+
+    init_index();
+    $('#middle_container').scroll();
+
+    $('body').css('visibility', 'visible');
 });
+

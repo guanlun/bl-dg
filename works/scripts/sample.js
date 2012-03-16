@@ -75,7 +75,7 @@ $(function() {
         img_orig_width = $('#bg_img img').width();
         img_orig_height = $('#bg_img img').height();
         resize_bg_img();
-        $('#bg_img img').css('opacity', '0.015');
+        $('#bg_img img').css('opacity', '0.05');
     });
 
     resize_container();

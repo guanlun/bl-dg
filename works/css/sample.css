@@ -14,7 +14,6 @@ body {
 }
 
 #bg_img img {
-    opacity:0.015;
 }
 
 #container {
@@ -31,8 +30,9 @@ body {
 
 #nav_bar ul li {
     display:inline;
-    margin-left:52px;
-    margin-right:52px;
+    float:left;
+    margin-left:50px;
+    margin-right:50px;
     color:#AAA;
     font-size:15pt;
 }
@@ -50,14 +50,15 @@ body {
 }
 
 #title_view {
-    font-size:14pt;
-    margin-top:15px;
+    font-size:9pt;
+    margin-top:25px;
     color:#333;
+    font-weight:bold;
 }
 
 #info_view {
     height:230px;
-    font-size:10pt;
+    font-size:9pt;
     color:#666;
     text-align:justify;
     margin-top:30px;
@@ -65,7 +66,7 @@ body {
 
 #brief_view {
     height:230px;
-    font-size:10pt;
+    font-size:9pt;
     font-style:italic;
     color:#666;
     margin-top:30px;
@@ -86,7 +87,7 @@ body {
 #lang_sel {
     text-align:right;
     color:#AAA;
-    font-size:9pt;
+    font-size:8pt;
 }
 
 #lang_sel span {

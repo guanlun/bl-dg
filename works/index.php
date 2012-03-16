@@ -5,6 +5,7 @@
         <title>BL-DG Works</title>
         <link href="css/index.css" rel="stylesheet"/>
         <script src="scripts/jquery-1.7.1.min.js"></script>
+        <script src="scripts/scroll.js"></script>
         <script src="scripts/index.js"></script>
     </head>
     <body>
