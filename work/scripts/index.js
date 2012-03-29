@@ -273,12 +273,9 @@ function update_background() {
         for (index in work_arr) {
             if (work_arr[index]['ID'] == curr_id) { // get the correct entry
                 var featured = work_arr[index]['Featured'];
-                var bg_data = work_arr[index]['BackgroundImage'];
-                var bg_imgs = bg_data.split(';');
-                var bg = bg_imgs[Math.floor(Math.random() * bg_imgs.length)];
-                var bg_path;
+                // var bg_path = curr_entry.toLowerCase() + '/images/' + work_arr[index]['BackgroundImage'];
                 if (featured == 1) {
-                    bg_path = work_arr[index]['Directory'] + '/images/' + bg;
+                    var bg_path = work_arr[index]['Directory'] + '/images/' + work_arr[index]['BackgroundImage'];
                 }
                 $('#bg_img img').stop();
                 $('#bg_img img').animate({

@@ -7,6 +7,16 @@ body {
     min-width:1024px;
 }
 
+a {
+    color:#AAA;
+    text-decoration:none;
+}
+
+a:hover {
+    color:#AAA;
+    text-decoration:none;
+}
+
 #bg_img {
     position:fixed;
     left:0px;
@@ -28,13 +38,17 @@ body {
     border-bottom:1px solid #AAA;
 }
 
+#nav_bar ul {
+margin-left: 70px;
+}
+
 #nav_bar ul li {
     display:inline;
     float:left;
     margin-left:50px;
     margin-right:50px;
     color:#AAA;
-    font-size:15pt;
+    font-size:12pt;
 }
 
 #inner_container {
@@ -87,7 +101,7 @@ body {
 #lang_sel {
     text-align:right;
     color:#AAA;
-    font-size:9pt;
+    font-size:8pt;
 }
 
 #lang_sel span {

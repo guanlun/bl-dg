@@ -1,21 +1,20 @@
 <?php
     include('../database.php');
+    require_once '../template/work.php';
+    require_once '../../template/main.php';
     connect();
     $uri = $_SERVER["REQUEST_URI"];
     $parts = split('/', $uri);
     $name = $parts[count($parts) - 2];
     $data = get_work_by_name($name);
-
-    $bg_data = $data['bgimg'];
-    $bg_imgs = split(';', $bg_data);
-    $bg = $bg_imgs[array_rand($bg_imgs)];
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>BL-DG <?php echo $data['name']; ?></title>
+        <title>BL-DG/<?php echo $data['name']; ?></title>
         <link href="../css/sample.css" rel="stylesheet"/>
+		<link rel="SHORTCUT ICON" href="/tabicon.ico"/>
         <script src="../scripts/jquery-1.7.1.min.js"></script>
         <script src="../scripts/scroll.js"></script>
         <script src="../scripts/gallery.js"></script>
@@ -23,20 +22,10 @@
     </head>
     <body>
         <div id='bg_img'>
-            <img src='images/<?php echo $bg; ?>' />
+            <img src='images/<?php echo $data['bgimg']; ?>' />
         </div>
         <div id='container'>
-            <div id="nav_bar">
-                <ul>
-                    <li id="work">work</li>
-                    <li id="research">research</li>
-                    <li id="words">words</li>
-                    <li id="about">about</li>
-                    <li id="contact">contact</li>
-                    <li id="employment">employment</li>
-                </ul>
-            </div>
-
+            <?php nav_bar() ?>
             <div id='inner_container'>
                 <div id='left_container'>
                     <div id='title_view'>
@@ -46,32 +35,15 @@
                         <?php echo $data['info']; ?>
                     </div>
                     <div id='brief_view'>
-                        <?php
-                            $brief = $data['brief'];
-                            $entries = split('##', $brief);
-                            for ($i = 0; $i < count($entries); $i++) {
-                                $pair = split('&&', $entries[$i]);
-                                echo '<div class=\'cate\'>' . $pair[0] . '</div><br />';
-                                echo $pair[1] . '<br />';
-                            }
-                        ?>
+                        <?php brief_view($data) ?>
                     </div>
                 </div>
 
                 <div id='right_container'>
-                    <div id="lang_sel">
-                        <span id="lang_en" class="lang">en</span> | 
-                        <span id="lang_sc" class="lang">简体</span> | 
-                        <span id="lang_tc" class="lang">繁體</span>
-                    </div>
+                    <?php lang_sel() ?>
                     <div id='gallery_container'>
                         <div class='gallery'>
-                            <?php
-                                $gallery_imgs = split(';', $data['glrimgs']);
-                                for ($i = 0; $i < count($gallery_imgs) - 1; $i++) {
-                                    echo '<div><img src=\'images/' . $gallery_imgs[$i] . '\' /></div>';
-                                }
-                            ?>
+                            <?php gallery($name,$data)?>
                         </div>
                     </div>
                 </div>

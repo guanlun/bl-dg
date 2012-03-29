@@ -20,7 +20,7 @@
 
 .nav_scalein {
     -webkit-animation-name:             scale_in;
-    -webkit-animation-duration:         1.5s;
+    -webkit-animation-duration:         1.6s;
     -webkit-animation-iteration-count:  once;
 }
 

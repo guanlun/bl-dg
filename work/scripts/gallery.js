@@ -157,6 +157,12 @@ jQuery.fn.gallery = function() {
         display.html(img);
     }
 
+    function set_video(src, videosrc){
+        mouse_clicked_on_img = src;
+        img_id = src;
+        display.html('<iframe src="'+videosrc+'" width="'+display_width+'" height="'+display_height+'" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>');
+    }
+
     imgs.click(function() {
         imgs.animate({
             opacity: 0.3,
@@ -164,6 +170,7 @@ jQuery.fn.gallery = function() {
         $(this).stop();
         $(this).css('opacity', '0.8');
         src = $(this).attr('src');
+        videosrc = $(this).attr('videosrc');
         if (img_id == src) {
             return;
         } else {
@@ -172,7 +179,11 @@ jQuery.fn.gallery = function() {
             display.animate( {
                 opacity: 0.0,
             }, 100, function() {
-                set_img(src);
+                if(videosrc != ""){
+                    set_video(src, videosrc);
+                }else{
+                    set_img(src);
+                }
                 display.animate( {
                     opacity: 1.0,
                 }, 100);

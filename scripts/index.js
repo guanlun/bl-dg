@@ -82,7 +82,7 @@ $(function() {
                     nav_bar.addClass('nav_scalein');
                     nav_bar.animate({
                         marginTop: 0
-                    }, 1500, function() {
+                    }, 1600, function() {
                         $('body').css('overflow', 'auto');
                     });
 

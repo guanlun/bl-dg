@@ -1,0 +1,180 @@
+html {
+    width:100%;
+    height:100%;
+    overflow-y:hidden;
+}
+
+body {
+    min-width:1024px;
+}
+
+a {
+    color:#000;
+    text-decoration:none;
+}
+
+a:hover {
+    color:#000;
+    text-decoration:none;
+}
+
+#bg_img {
+    position:fixed;
+    left:0px;
+    top:0px;
+}
+
+#bg_img img {
+    opacity:0.9;
+}
+
+#container {
+    position:absolute;
+    top:0px;
+    width:1024px;
+    font-family:Geneva, Helvetica;
+}
+
+#nav_bar {
+    height:24px;
+    border-bottom:1px solid #000;
+}
+
+#nav_bar ul {
+    margin-left: 70px;
+}
+
+#nav_bar ul li {
+    display:inline;
+    float:left;
+    margin-left:50px;
+    margin-right:50px;
+    color:#000;
+    font-size:12pt;
+}
+
+#inner_container {
+    margin-top:10px;
+    height:600px;
+    padding-top:30px;
+}
+
+#left_container {
+    float:left;
+    width:300px;
+    padding-right:15px;
+    padding-bottom:120px;
+    border-right:1px solid #666;
+}
+
+#bldg_container {
+}
+
+#bldg_title_view {
+    font-size:13px;
+    font-weight:bold;
+}
+
+#bldg_content_view {
+    height:145px;
+    margin-top:20px;
+    font-size:11px;
+    color:#555;
+}
+
+#yueqi_container {
+    margin-top:40px;
+}
+
+#yueqi_title_view {
+    font-size:13px;
+    font-weight:bold;
+}
+
+#yueqi_content_view {
+    height:145px;
+    margin-top:20px;
+    font-size:11px;
+    color:#555;
+}
+
+#middle_container {
+    float:left;
+    width:320px;
+    padding-bottom:315px;
+    padding-left:20px;
+    padding-right:20px;
+    border-right:1px solid #666;
+}
+
+#contact_container {
+}
+
+#contact_title_view {
+    font-size:15px;
+    font-weight:bold;
+}
+
+#contact_content_view {
+    margin-top:15px;
+}
+
+#contact_london_view {
+    font-size:12px;
+}
+
+#contact_info_view {
+    font-size:13px;
+    color:#333;
+}
+
+#contact_us_china_view {
+    margin-top:25px;
+    font-size:13px;
+    color:#666;
+}
+
+#right_container {
+    float:left;
+    padding-left:20px;
+    padding-bottom:40px;
+}
+
+#map_container {
+    margin-top:30px;
+}
+
+#map_container img {
+    width:325px;
+}
+
+#credit_container {
+    margin-top:200px;
+}
+
+#credit_title_view {
+    font-size:13px;
+    font-weight:bold;
+}
+
+#credit_content_view {
+    margin-top:20px;
+    font-size:11px;
+    color:#555;
+}
+
+#credit_content_view a {
+    margin-top:20px;
+    font-size:11px;
+    color:#555;
+}
+
+#lang_sel {
+    text-align:right;
+    color:#000;
+    font-size:9pt;
+}
+
+#lang_sel span {
+    cursor:pointer;
+}

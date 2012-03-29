@@ -1,2 +1,0 @@
-Brief info part:
-For the titles like "type", "status", "location", plz surround them with [] and leave the contents without brackets.
