@@ -19,9 +19,11 @@
         <script src="../scripts/sample.js"></script>
     </head>
     <body>
+        <!--
         <div id='bg_img'>
             <img />
         </div>
+        -->
         <div id='container'>
             <?php nav_bar(); ?>
             <div id='inner_container'>
