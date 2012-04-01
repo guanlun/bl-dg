@@ -50,6 +50,18 @@ function resize_container() {
     $('#container').css('margin-left', margin_left);
 }
 
+function pixel_to_int(str) {
+    return parseInt(str.substring(0, str.length - 2));
+}
+
+function adjust_right_delimeter() {
+    var left_height = 
+            $('#left_container').height() + pixel_to_int($('#left_container').css('padding-bottom'));
+    var middle_height = $('#middle_container').height();
+    var padding_bottom = left_height - middle_height;
+    $('#middle_container').css('padding-bottom', padding_bottom);
+}
+
 $(function() {
     page_height = $(window).height();
     page_width = $(window).width();
@@ -74,9 +86,11 @@ $(function() {
     });
 
     resize_container();
+    adjust_right_delimeter();
     
     $(window).resize(function() {
         resize_bg_img();
         resize_container();
+        adjust_right_delimeter();
     });
 });

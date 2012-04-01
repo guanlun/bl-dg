@@ -24,7 +24,6 @@
                         </div>
                         <div id='bldg_content_view'>
                          	BL-DG is an architectural practice dedicated to the realization of innovative design. Founded by Yueqi ‘Jazzy’ Li in 2011, the practice is flexibly based in Bejing, London, and New Orleans. The name BL-DG stands for both the short for ‘building’ (noun) and ‘build-design’(verbs). The practice deeply believes in the power of the built reality and thus strives to create architecture that is innovative, provocative, and at the same time real.<br/>Recent projects include additions to two weekend houses in Beijing, China, an installation named ‘Danaus’ exhibited at the Tulane School of Architecture, and a proposal for the Warhol Foundation office building in New Orleans.
-							
                         </div>
                     </div>
                     <div id='yueqi_container'>
@@ -60,6 +59,16 @@
                                     Beijing, P.R.China
                                 </div>
                             </div>
+                            <div id='employment_view'>
+                                <div id='employment_title'>
+                                    Employment
+                                </div>
+                                <div id='employment_content'>
+                                    BL-DG is seeking design talents for future projects. Candidates should have 
+                                    good command of both conventional medium as well as digital tools.<br />
+                                    Please send your portfolio io office@bl-dg.com.
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -76,7 +85,7 @@
                             All Contents © BL-DG 2012<br />
                             Site Design by BL-DG<br />
                             Site Engineering by Guanlun Zhao<br />
-                            <a href='weaver-at-work.com'>weaver-at-work.com</a><br />
+                            <a href='http://weaver-at-work.com'>weaver-at-work.com</a><br />
                         </div>
                     </div>
                 </div>

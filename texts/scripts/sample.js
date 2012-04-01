@@ -61,7 +61,6 @@ $(function() {
     $('#work').css('margin-left', '0px');
     $('#employment').css('margin-right', '0px');
 
-
     $('#left_list_items').scroll();
     $('#right_article_content').scroll();
 
@@ -74,6 +73,7 @@ $(function() {
         var new_width = ctn_height * img_width / img_height;
         $('#left_image img').css('height', new_height);
         $('#left_image img').css('width', new_width);
+        console.log(new_height + " " + new_width);
 
         var margin_left = (ctn_width - new_width) / 2;
         $('#left_image img').css('margin-left', margin_left);

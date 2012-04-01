@@ -35,24 +35,6 @@ a:hover {
     font-family:Geneva, Helvetica;
 }
 
-#nav_bar {
-    height:24px;
-    border-bottom:1px solid #000;
-}
-
-#nav_bar ul {
-    margin-left: 70px;
-}
-
-#nav_bar ul li {
-    display:inline;
-    float:left;
-    margin-left:50px;
-    margin-right:50px;
-    color:#000;
-    font-size:12pt;
-}
-
 #inner_container {
     margin-top:10px;
     height:600px;
@@ -101,7 +83,7 @@ a:hover {
 #middle_container {
     float:left;
     width:320px;
-    padding-bottom:315px;
+    padding-bottom:208px;
     padding-left:20px;
     padding-right:20px;
     border-right:1px solid #666;
@@ -111,26 +93,41 @@ a:hover {
 }
 
 #contact_title_view {
-    font-size:15px;
+    font-size:13px;
     font-weight:bold;
 }
 
 #contact_content_view {
-    margin-top:15px;
+    margin-top:20px;
 }
 
 #contact_london_view {
-    font-size:12px;
+    font-size:13px;
 }
 
 #contact_info_view {
-    font-size:13px;
+    font-size:11px;
     color:#333;
 }
 
 #contact_us_china_view {
     margin-top:25px;
     font-size:13px;
+    color:#666;
+}
+
+#employment_view {
+    margin-top:35px;
+}
+
+#employment_title {
+    font-size:13px;
+    font-weight:bold;
+}
+
+#employment_content {
+    margin-top:25px;
+    font-size:11px;
     color:#666;
 }
 

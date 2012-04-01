@@ -1,5 +1,5 @@
 <?php
-    include('../database.php');
+    include('../../database.php');
     require_once '../template/work.php';
     require_once '../../template/main.php';
     connect();
@@ -15,7 +15,6 @@
         <title>BL-DG/<?php echo $data['name']; ?></title>
         <link href="../css/sample.css" rel="stylesheet"/>
 		<link rel="SHORTCUT ICON" href="/tabicon.ico"/>
-        <script src="../scripts/jquery-1.7.1.min.js"></script>
         <script src="../scripts/scroll.js"></script>
         <script src="../scripts/gallery.js"></script>
         <script src="../scripts/sample.js"></script>

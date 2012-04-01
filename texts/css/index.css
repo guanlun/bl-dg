@@ -34,24 +34,6 @@ a:hover {
     font-family:Geneva,Helvetica;
 }
 
-#nav_bar {
-    height:24px;
-    border-bottom:1px solid #000;
-}
-
-#nav_bar ul {
-margin-left: 70px;
-}
-
-#nav_bar ul li {
-    display:inline;
-    float:left;
-    margin-left:50px;
-    margin-right:50px;
-    color:#000;
-    font-size:12pt;
-}
-
 #inner_container {
     margin-top:10px;
     height:600px;
@@ -73,6 +55,8 @@ margin-left: 70px;
 }
 
 #left_image img {
+    width:260px;
+    height:280px;
 }
 
 #left_list {

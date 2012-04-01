@@ -33,24 +33,6 @@ a:hover {
     font-family:Helvetica;
 }
 
-#nav_bar {
-    height:24px;
-    border-bottom:1px solid #AAA;
-}
-
-#nav_bar ul {
-margin-left: 70px;
-}
-
-#nav_bar ul li {
-    display:inline;
-    float:left;
-    margin-left:50px;
-    margin-right:50px;
-    color:#AAA;
-    font-size:12pt;
-}
-
 #inner_container {
     height:600px;
 }
