@@ -102,7 +102,10 @@ function load_bg_imgs() {
     for (index in work_arr) {
         if (work_arr[index] != '') {
             var img = new Image();
-            img.src = work_arr[index]['Directory'] + '/images/' + work_arr[index]['BackgroundImage'];
+            var img_arr = work_arr[index]['BackgroundImage'];
+            var imgs = img_arr.split(';');
+            var img = imgs[Math.floor(Math.random() * imgs.length)]
+            img.src = work_arr[index]['Directory'] + '/images/' + img;
             bg_img_arr.push(img.src);
         }
     }
@@ -275,7 +278,10 @@ function update_background() {
                 var featured = work_arr[index]['Featured'];
                 // var bg_path = curr_entry.toLowerCase() + '/images/' + work_arr[index]['BackgroundImage'];
                 if (featured == 1) {
-                    var bg_path = work_arr[index]['Directory'] + '/images/' + work_arr[index]['BackgroundImage'];
+                    var img_arr = work_arr[index]['BackgroundImage'];
+                    var imgs = img_arr.split(';');
+                    var img = imgs[Math.floor(Math.random() * imgs.length)]
+                    var bg_path = work_arr[index]['Directory'] + '/images/' + img;
                 }
                 $('#bg_img img').stop();
                 $('#bg_img img').animate({

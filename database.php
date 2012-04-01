@@ -1,13 +1,13 @@
 <?php
     function connect() {
-        /*
         $con = mysql_connect('188.121.40.81', 'bldg1989', 'Birthday27!') or die('cannot connect to the database');
         mysql_query("SET NAMES 'utf8'");
         $db = mysql_select_db('bldg1989') or die('cannot select database');
-        */
+        /*
         $con = mysql_connect('localhost', 'root', 'mysqlpass') or die('cannot connect to the database');
         mysql_query("SET NAMES 'utf8'");
         $db = mysql_select_db('bldg_db') or die('cannot select database');
+        */
     }
 
     function get_work_by_name($work_name) {
@@ -61,6 +61,23 @@
             $text['Title'] = $row['Title'];
             $text['Content'] = $row['Content'];
             $text['Image'] = $row['Image'];
+            $text['Directory'] = $row['Directory'];
+            $text['Language'] = $row['Language'];
+        }
+        return $text;
+    }
+
+    function get_text_by_dir($text_name) {
+        $query = 'SELECT * FROM `Text` WHERE `Directory` LIKE \'' . $text_name . '\'';
+        $result = mysql_query($query);
+        $text = array();
+
+        while ($row = mysql_fetch_array($result)) {
+            $text['Title'] = $row['Title'];
+            $text['Content'] = $row['Content'];
+            $text['Image'] = $row['Image'];
+            $text['Directory'] = $row['Directory'];
+            $text['Language'] = $row['Language'];
         }
         return $text;
     }
@@ -80,9 +97,11 @@
             $text['Title'] = $row['Title'];
             $text['Content'] = $row['Content'];
             $text['Image'] = $row['Image'];
+            $text['Directory'] = $row['Directory'];
+            $text['Language'] = $row['Language'];
             array_push($text_arr, $text);
         }
-        return $text_arr;
+        return array_reverse($text_arr);
     }
 
 ?>

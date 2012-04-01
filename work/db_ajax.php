@@ -1,5 +1,5 @@
 <?php
-    include('database.php');
+    include('../database.php');
     connect();
 
     $query = 'SELECT * FROM `Work` ORDER BY `ID`';

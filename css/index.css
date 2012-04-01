@@ -65,6 +65,9 @@
     -moz-animation-name:             scale_in;
     -moz-animation-duration:         1.6s;
     -moz-animation-iteration-count:  once;
+    animation-name:             scale_in;
+    animation-duration:         1.6s;
+    animation-iteration-count:  once;
 }
 
 .langsel_fadein {
@@ -74,6 +77,9 @@
     -moz-animation-name:             down_emerge;
     -moz-animation-duration:         1.5s;
     -moz-animation-iteration-count:  once;
+    animation-name:             scale_in;
+    animation-duration:         1.6s;
+    animation-iteration-count:  once;
 }
 
 html {

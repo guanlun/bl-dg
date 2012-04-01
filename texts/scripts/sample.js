@@ -73,11 +73,28 @@ $(function() {
         var new_width = ctn_height * img_width / img_height;
         $('#left_image img').css('height', new_height);
         $('#left_image img').css('width', new_width);
-        console.log(new_height + " " + new_width);
 
         var margin_left = (ctn_width - new_width) / 2;
         $('#left_image img').css('margin-left', margin_left);
     });
+
+    $('#left_list_items ul li').click(function() {
+        window.location = '../' + $(this).attr('id');
+    });
+
+    $('#left_list_items ul li').mouseover(function() {
+        $('#left_list_items ul li').css('color', '#666');
+        $(this).css('color', '#000');
+    });
+
+    $('#left_list_items ul li').mouseout(function() {
+        $(this).css('color', '#666');
+    });
+
+    var lang = $('#lang_indicate').text();
+    if (lang != 'EN') {
+        $('#right_article_content').css('font-size', '14px');
+    }
 
     /*
     $('#bg_img img').css('opacity', '0.0');

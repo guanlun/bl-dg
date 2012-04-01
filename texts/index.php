@@ -10,7 +10,7 @@
         require_once '../template/main.php';
         connect();
         $first_text = get_first_text();
-        $title = $first_text['Title'];
+        $title = $first_text['Directory'];
     ?>
     <script>
         <!--
