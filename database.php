@@ -67,8 +67,8 @@
         return $text;
     }
 
-    function get_text_by_dir($text_name) {
-        $query = 'SELECT * FROM `Text` WHERE `Directory` LIKE \'' . $text_name . '\'';
+    function get_text_by_dir($dir) {
+        $query = 'SELECT * FROM `Text` WHERE `Directory` LIKE \'' . $dir . '\'';
         $result = mysql_query($query);
         $text = array();
 
@@ -103,5 +103,57 @@
         }
         return array_reverse($text_arr);
     }
+
+    function get_research_by_name($name) {
+        $query = 'SELECT * FROM `Research` WHERE `Name` LIKE \'' . $name . '\'';
+        $result = mysql_query($query);
+        $research = array();
+
+        while ($row = mysql_fetch_array($result)) {
+            $research['ID'] = $row['ID'];
+            $research['Name'] = $row['Name'];
+            $research['Info'] = $row['Info'];
+            $research['GalleryImages'] = $row['GalleryImages'];
+            $research['Directory'] = $row['Directory'];
+        }
+        return $research;
+    }
+
+    function get_research_by_dir($dir) {
+        $query = 'SELECT * FROM `Research` WHERE `Directory` LIKE \'' . $dir . '\'';
+        $result = mysql_query($query);
+        $research = array();
+
+        while ($row = mysql_fetch_array($result)) {
+            $research['ID'] = $row['ID'];
+            $research['Name'] = $row['Name'];
+            $research['Info'] = $row['Info'];
+            $research['GalleryImages'] = $row['GalleryImages'];
+            $research['Directory'] = $row['Directory'];
+        }
+        return $research;
+    }
+ 
+    function get_first_research() {
+        $research_arr = get_all_researches();
+        return $research_arr[0];
+    }
+
+    function get_all_researches() {
+        $query = 'SELECT * FROM `Research` ORDER BY `ID`';
+        $result = mysql_query($query);
+        $research_arr = array();
+        while ($row = mysql_fetch_array($result)) {
+            $research = array();
+            $research['ID'] = $row['ID'];
+            $research['Name'] = $row['Name'];
+            $research['Info'] = $row['Info'];
+            $research['GalleryImages'] = $row['GalleryImages'];
+            $research['Directory'] = $row['Directory'];
+            array_push($research_arr, $research);
+        }
+        return array_reverse($research_arr);
+    }
+
 
 ?>
