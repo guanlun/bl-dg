@@ -1,8 +1,8 @@
 jQuery.fn.scroll = function() {
     var div = $(this);
     var scroll_id = 0;
-    width = div.width();
-    height = div.height();
+    var width = div.width();
+    var height = div.height();
 
     div.css('overflow-y', 'hidden');
     div.css('cursor', 'default');

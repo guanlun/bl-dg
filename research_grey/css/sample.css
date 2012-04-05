@@ -1,0 +1,128 @@
+html {
+    width:100%;
+    height:100%;
+}
+
+body {
+    min-width:1024px;
+    background:#222;
+}
+
+a {
+    color:#CCC;
+    text-decoration:none;
+}
+
+a:hover {
+    color:#CCC;
+    text-decoration:none;
+}
+
+#bg_img {
+    position:fixed;
+    left:0px;
+    top:0px;
+}
+
+#bg_img img {
+}
+
+#container {
+    position:absolute;
+    top:0px;
+    width:1024px;
+    font-family:Helvetica;
+}
+
+#nav_bar {
+    height:24px;
+    border-bottom:1px solid #EEE;
+}
+
+#nav_bar ul {
+    margin-left: 70px;
+}
+
+#nav_bar ul li {
+    position:absolute;
+    display:inline;
+    float:left;
+    color:#EEE;
+    font-size:12pt;
+    cursor:pointer;
+}
+#inner_container {
+    height:600px;
+}
+
+#left_container {
+    float:left;
+    width:270px;
+    margin-top:23px;
+    padding-right:30px;
+    border-right:1px solid #AAA;
+}
+
+#title_view {
+    font-size:9pt;
+    margin-top:25px;
+    color:#EEE;
+    font-weight:bold;
+}
+
+#info_view {
+    height:330px;
+    font-size:9pt;
+    color:#CCC;
+    text-align:justify;
+    margin-top:30px;
+}
+
+#research_list {
+    height:200px;
+    margin-top:40px;
+    padding-bottom:40px;
+}
+
+#research_list_title {
+    font-size:12px;
+    font-weight:bold;
+    color:#EEE;
+}
+
+#research_list_items {
+    height:200px;
+    font-style:italic;
+    color:#CCC;
+}
+
+#research_list_items ul {
+    list-style-type:none;
+    padding:0px;
+}
+
+#research_list_items ul li {
+    margin-bottom:20px;
+    font-size:12px;
+    cursor:pointer;
+}
+
+#right_container {
+    float:left;
+    margin-left:20px;
+    margin-top:10px;
+}
+
+#lang_sel {
+    text-align:right;
+    color:#CCC;
+    font-size:8pt;
+}
+
+#lang_sel span {
+    cursor:pointer;
+}
+
+#gallery_container {
+    margin-top:5px;
+}
