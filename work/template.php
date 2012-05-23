@@ -15,10 +15,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-        <title>BL-DG/<?php echo $data['name']; ?></title>
+        <meta http-equiv="Content-Type" content="text/html;charset=gbk"/>
+        <title>BL-DG/<?php 
+            if ($lang == 'sc') {
+                echo $data['nameSC']; 
+            } else if ($lang == 'tc') {
+                echo $data['nameTC']; 
+            } else {
+                echo $data['name']; 
+            }
+        ?>
+        </title>
         <link href="../css/sample.css" rel="stylesheet"/>
-        <link rel="SHORTCUT ICON" href="/tabicon.ico"/>
+	<link rel="SHORTCUT ICON" href="/tabicon.ico"/>
         <script src="../scripts/jquery-1.7.1.min.js"></script>
         <script src="../scripts/scroll.js"></script>
         <script src="../scripts/gallery.js"></script>
@@ -33,13 +42,41 @@
             <div id='inner_container'>
                 <div id='left_container'>
                     <div id='title_view'>
-                        <?php echo $data['name']; ?>
+                        <?php 
+                            if ($lang == 'sc') {
+                                echo $data['nameSC']; 
+                            } else if ($lang == 'tc') {
+                                echo $data['nameTC']; 
+                            } else {
+                                echo $data['name']; 
+                            }
+                        ?>
                     </div>
                     <div id='info_view'>
-                        <?php echo $data['info']; ?>
+                        <?php 
+                            $filename = $data['info'];
+                            if ($lang == 'sc') {
+                                $filename = $data['infoSC'];
+                            } else if ($lang == 'tc') {
+                                $filename = $data['infoTC'];
+                            }
+                            $handle = fopen($filename, 'r');
+                            $content = fread($handle, filesize($filename));
+                            echo $content;
+                        ?>
                     </div>
                     <div id='brief_view'>
-                        <?php brief_view($data) ?>
+                        <?php
+                            $filename = $data['brief'];
+                            if ($lang == 'sc') {
+                                $filename = $data['briefSC'];
+                            } else if ($lang == 'tc') {
+                                $filename = $data['briefTC'];
+                            }
+                            $handle = fopen($filename, 'r');
+                            $content = fread($handle, filesize($filename));
+                            echo $content;
+                        ?>
                     </div>
                 </div>
 

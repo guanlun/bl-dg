@@ -58,4 +58,18 @@ $(function() {
             items.eq(index).text(remove_ending_dots(items.eq(index).text()));
         }
     });
+
+    var langSels = $('#lang_sel').find('.lang');
+    langSels.click(function() {
+        var langPref;
+        if ($(this).attr('id') == 'lang_en') {
+            langPref = 'en';
+        } else if ($(this).attr('id') == 'lang_sc') {
+            langPref = 'sc';
+        } else if ($(this).attr('id') == 'lang_tc') {
+            langPref = 'tc';
+        }
+        window.location = '/lang_change.php?lang=' + langPref + '&url=' + window.location.href;
+    });
+
 });

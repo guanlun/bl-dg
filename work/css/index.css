@@ -21,10 +21,28 @@ a:hover {
     position:fixed;
     left:0px;
     top:0px;
+    display:none;
 }
 
 #bg_img img {
     opacity:0.9;
+}
+
+#loading {
+    text-align: center;
+}
+
+#loading_text {
+    position: relative;
+    margin-top: 245px;
+    z-index: 3;
+    font-size: 12px;
+}
+
+#loading_img{
+    position: relative;
+    margin-top: -195px;
+    z-index: 2;
 }
 
 #container {
@@ -32,6 +50,8 @@ a:hover {
     top:0px;
     width:1024px;
     font-family:Helvetica;
+    display:none;
+    font-size:11px;
 }
 
 a {
@@ -59,7 +79,6 @@ a:hover {
 #left_container ul li {
     cursor:default;
     margin-bottom:20px;
-    font-size:11px;
 }
 
 ul {
@@ -75,7 +94,6 @@ ul {
 #middle_container ul li {
     cursor:default;
     margin-bottom:30px;
-    font-size:11px;
 }
 
 #right_container {
@@ -86,7 +104,6 @@ ul {
 #right_container ul li {
     cursor:default;
     margin-bottom:20px;
-    font-size:11px;
 }
 
 #lang_sel {

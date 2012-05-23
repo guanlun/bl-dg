@@ -82,6 +82,14 @@
     animation-iteration-count:  once;
 }
 
+.logo_scale_in {
+    -webkit-transform:scale(6);
+}
+
+.logo_scale_out {
+    -webkit-transform:scale(1);
+}
+
 html {
     width:100%;
     height:100%;
@@ -142,4 +150,6 @@ a:hover {
 #logo_container img {
     vertical-align:middle;
     position:absolute;
+    -webkit-transition:-webkit-transform 1.2s ease-in-out;
 }
+

@@ -5,15 +5,16 @@ html {
 
 body {
     min-width:1024px;
+    background:#222;
 }
 
 a {
-    color:#AAA;
+    color:#CCC;
     text-decoration:none;
 }
 
 a:hover {
-    color:#AAA;
+    color:#CCC;
     text-decoration:none;
 }
 
@@ -33,6 +34,23 @@ a:hover {
     font-family:Helvetica;
 }
 
+#nav_bar {
+    height:24px;
+    border-bottom:1px solid #EEE;
+}
+
+#nav_bar ul {
+    margin-left: 70px;
+}
+
+#nav_bar ul li {
+    position:absolute;
+    display:inline;
+    float:left;
+    color:#EEE;
+    font-size:12pt;
+    cursor:pointer;
+}
 #inner_container {
     height:600px;
 }
@@ -48,20 +66,19 @@ a:hover {
 #title_view {
     font-size:9pt;
     margin-top:25px;
-    color:#333;
+    color:#EEE;
     font-weight:bold;
 }
 
 #info_view {
-    height:230px;
+    height:330px;
     font-size:9pt;
-    color:#666;
+    color:#CCC;
     text-align:justify;
     margin-top:30px;
 }
 
 #research_list {
-    height:200px;
     margin-top:40px;
     padding-bottom:40px;
 }
@@ -69,13 +86,13 @@ a:hover {
 #research_list_title {
     font-size:12px;
     font-weight:bold;
-    color:#333;
+    color:#EEE;
 }
 
 #research_list_items {
-    height:200px;
+    height:100px;
     font-style:italic;
-    color:#666;
+    color:#CCC;
 }
 
 #research_list_items ul {
@@ -97,7 +114,7 @@ a:hover {
 
 #lang_sel {
     text-align:right;
-    color:#AAA;
+    color:#CCC;
     font-size:8pt;
 }
 

@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+        <meta http-equiv="Content-Type" content="text/html;charset=gbk"/>
         <title>BL-DG/news</title>
         <link href="css/index.css" rel="stylesheet"/>
 		<link rel="SHORTCUT ICON" href="/tabicon.ico"/>
@@ -23,7 +23,9 @@
                             news
                         </div>
                         <div id='news_eng_content_view'>
-                            12/2011	BL-DG is officially founded.<br /><br />
+                            04/2012 BL-DG website (English version beta) goes live.<br />
+							w/ engineering by Guanlun ZHAO<br /><br />
+							12/2011	BL-DG is officially established.<br /><br />
                         </div>
                     </div>
                 </div>
@@ -31,10 +33,15 @@
                 <div id='middle_container'>
                     <div id='news_view_scn'>
                         <div id='news_scn_title_view'>
-                            æ–°é—»
+                            ĞÂÎÅ
                         </div>
                         <div id='news_scn_content_view'>
-                           12ï¼2011 BL-DGäº‹åŠ¡æ‰€æ­£å¼æˆç«‹
+                           	 
+05/2012 BL-DGÍøÕ¾¼ò·±ÌåÖĞÎÄ°æÍÆ³ö.<br />
+04/2012 BL-DGÍøÕ¾Ó¢ÎÄ²âÊÔ°æÉÏÏß.<br />
+
+								ÍøÕ¾¹¤³ÌÊ¦£ºÕÔ¹ÚÂ×<br /><br />
+								12/2011 BL-DGÊÂÎñËùÕıÊ½³ÉÁ¢
                         </div>
                     </div>
                 </div>
@@ -42,10 +49,14 @@
                 <div id='right_container'>
                     <div id='news_view_tcn'>
                         <div id='news_tcn_title_view'>
-                            è™Ÿå¤–
+                            Ì–Íâ
                         </div>
                         <div id='news_tcn_content_view'>
-                           BL-DGäº‹å‹™æ‰€æ­£å¼æˆç«‹
+                           	05/2012 BL-DG¾WÕ¾º†·±ówÖĞÎÄ°æÍÆ³ö.<br />
+04/2012 BL-DG¾WÕ¾Ó¢ÎÄœyÔ‡°æÉÏ¾€.<br />
+
+								¾WÕ¾¹¤³ÌŸ£ºÚw¹Ú‚<br /><br />
+								12/2011 BL-DGÊÂ„ÕËùÕıÊ½³ÉÁ¢
                         </div>
                     </div>
                 </div>

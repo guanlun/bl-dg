@@ -83,13 +83,29 @@ $(function() {
     });
 
     $('#research_list_items ul li').mouseover(function() {
-        $('#research_list_items ul li').css('color', '#666');
-        $(this).css('color', '#000');
+        for (index in $('#research_list_items ul li')) {
+            if ($('#research_list_items ul li').eq(index).text() 
+                    == $('#title_view').text()) {
+                $('#research_list_items ul li').eq(index).css('color', '#FFF');
+            } else {
+                $('#research_list_items ul li').eq(index).css('color', '#CCC');
+            }
+        }
+        $(this).css('color', '#FFF');
     });
 
     $('#research_list_items ul li').mouseout(function() {
-        $(this).css('color', '#666');
+        if ($(this).text() != $('#title_view').text()) {
+            $(this).css('color', '#CCC');
+        }
     });
+
+    for (index in $('#research_list_items ul li')) {
+        if ($('#research_list_items ul li').eq(index).text() 
+                == $('#title_view').text()) {
+            $('#research_list_items ul li').eq(index).css('color', '#FFF');
+        }
+    }
 
     resize_container();
     

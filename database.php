@@ -1,13 +1,13 @@
 <?php
     function connect() {
-        /*
         $con = mysql_connect('188.121.40.81', 'bldg1989', 'Birthday27!') or die('cannot connect to the database');
-        mysql_query("SET NAMES 'utf8'");
+        mysql_query("SET NAMES 'gbk'");
         $db = mysql_select_db('bldg1989') or die('cannot select database');
-        */
+        /*
         $con = mysql_connect('localhost', 'root', 'mysqlpass') or die('cannot connect to the database');
         mysql_query("SET NAMES 'utf8'");
         $db = mysql_select_db('bldg_db') or die('cannot select database');
+        */
     }
 
     function get_work_by_name($work_name) {
@@ -26,6 +26,18 @@
             $work['cate'] = $row['Category'];
             $work['chron'] = $row['Chronology'];
             $work['location'] = $row['Location'];
+            $work['nameSC'] = $row['ProjectNameSC'];
+            $work['infoSC'] = $row['InformationSC'];
+            $work['briefSC'] = $row['BriefSC'];
+            $work['statusSC'] = $row['StatusSC'];
+            $work['cateSC'] = $row['CategorySC'];
+            $work['nameTC'] = $row['ProjectNameTC'];
+            $work['infoTC'] = $row['InformationTC'];
+            $work['briefTC'] = $row['BriefTC'];
+            $work['statusTC'] = $row['StatusTC'];
+            $work['cateTC'] = $row['CategoryTC'];
+            $work['locationSC'] = $row['locationSC'];
+            $work['locationTC'] = $row['locationTC'];
         }
         return $work;
     }
@@ -47,6 +59,18 @@
             $work['cate'] = $row['Category'];
             $work['chron'] = $row['Chronology'];
             $work['location'] = $row['Location'];
+            $work['nameSC'] = $row['ProjectNameSC'];
+            $work['infoSC'] = $row['InformationSC'];
+            $work['briefSC'] = $row['BriefSC'];
+            $work['statusSC'] = $row['StatusSC'];
+            $work['cateSC'] = $row['CategorySC'];
+            $work['nameTC'] = $row['ProjectNameTC'];
+            $work['infoTC'] = $row['InformationTC'];
+            $work['briefTC'] = $row['BriefTC'];
+            $work['statusTC'] = $row['StatusTC'];
+            $work['cateTC'] = $row['CategoryTC'];
+            $work['locationSC'] = $row['locationSC'];
+            $work['locationTC'] = $row['locationTC'];
             array_push($work_arr, $work);
         }
         return $work_arr;
@@ -115,6 +139,10 @@
             $research['Info'] = $row['Info'];
             $research['GalleryImages'] = $row['GalleryImages'];
             $research['Directory'] = $row['Directory'];
+            $research['NameSC'] = $row['NameSC'];
+            $research['InfoSC'] = $row['InfoSC'];
+            $research['NameTC'] = $row['NameTC'];
+            $research['InfoTC'] = $row['InfoTC'];
         }
         return $research;
     }
@@ -130,6 +158,10 @@
             $research['Info'] = $row['Info'];
             $research['GalleryImages'] = $row['GalleryImages'];
             $research['Directory'] = $row['Directory'];
+            $research['NameSC'] = $row['NameSC'];
+            $research['InfoSC'] = $row['InfoSC'];
+            $research['NameTC'] = $row['NameTC'];
+            $research['InfoTC'] = $row['InfoTC'];
         }
         return $research;
     }
@@ -150,6 +182,10 @@
             $research['Info'] = $row['Info'];
             $research['GalleryImages'] = $row['GalleryImages'];
             $research['Directory'] = $row['Directory'];
+            $research['NameSC'] = $row['NameSC'];
+            $research['InfoSC'] = $row['InfoSC'];
+            $research['NameTC'] = $row['NameTC'];
+            $research['InfoTC'] = $row['InfoTC'];
             array_push($research_arr, $research);
         }
         return array_reverse($research_arr);

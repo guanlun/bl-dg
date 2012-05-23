@@ -1,26 +1,53 @@
 <?php
 
+include_once('header.php');
+
 function nav_bar() {
-    echo "<div id=\"nav_bar\">
-                <ul>
-                    <li id=\"work\">work</li>
-                    <li id=\"research\">research</li>
-                    <li id=\"texts\">texts</li>
-                    <li id=\"news\">news</li>
-                    <li id=\"info\">info</li>
-                </ul>
-            </div>";
+    $lang = $_SESSION['LANG_PREF'];
+    if ($lang == 'sc') {
+        echo "<div id=\"nav_bar\">
+                    <ul>
+                        <li id=\"work\">◊˜∆∑</li>
+                        <li id=\"research\">—–æø</li>
+                        <li id=\"texts\">Œƒ◊÷</li>
+                        <li id=\"news\">–¬Œ≈</li>
+                        <li id=\"info\">πÿ”⁄</li>
+                    </ul>
+                </div>";
+    } else if ($lang == 'tc') {
+        echo "<div id=\"nav_bar\">
+                    <ul>
+                        <li id=\"work\">◊˜∆∑</li>
+                        <li id=\"research\">—–æø</li>
+                        <li id=\"texts\">Œƒ◊÷</li>
+                        <li id=\"news\">–¬¬Ñ</li>
+                        <li id=\"info\">ÍPÏ∂</li>
+                    </ul>
+                </div>";
+    } else {
+        echo "<div id=\"nav_bar\">
+                    <ul>
+                        <li id=\"work\">work</li>
+                        <li id=\"research\">research</li>
+                        <li id=\"texts\">texts</li>
+                        <li id=\"news\">news</li>
+                        <li id=\"info\">info</li>
+                    </ul>
+                </div>";
+    }
 }
 
 function lang_sel() {
-    echo "<div id=\"lang_sel\">
-                        <span id=\"lang_en\" class=\"lang\">en</span> |
-                        <span id=\"lang_sc\" class=\"lang\">ÁÆÄ‰Ωì</span> |
-                        <span id=\"lang_tc\" class=\"lan\">ÁπÅÈ´î</span>
-                    </div>";
+    echo "
+        <div id=\"lang_sel\">
+            <span id=\"lang_en\" class=\"lang\">en</span> |
+            <span id=\"lang_sc\" class=\"lang\">ºÚÃÂ</span> |
+            <span id=\"lang_tc\" class=\"lang\">∑±ÃÂ</span>
+        </div>
+    ";
 }
 
 ?>
-        <link href="/BLDG/css/header.css" rel="stylesheet"/>
-        <script src="/BLDG/scripts/jquery-1.7.1.min.js"></script>
-        <script type='text/javascript' src='/BLDG/scripts/header.js'></script>
+        <link href="/css/header.css" rel="stylesheet"/>
+        <script src="/scripts/jquery-1.7.1.min.js"></script>
+        <script type='text/javascript' src='/scripts/header.js'></script>

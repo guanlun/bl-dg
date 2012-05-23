@@ -1,6 +1,8 @@
 var img_orig_width, img_orig_height;
 var page_width, page_height;
 
+var loaded=0;
+var total;
 var curr_column = 'Featured';
 // var curr_entry;
 var curr_id;
@@ -18,9 +20,11 @@ var right_dot_anim_id = 0;
 var last_entry = ''; // remember the last entry to avoid refresh 5ackground image when mouse moves onto the same one
 var last_id;
 
+var lang = 'en';
+
 function resize_bg_img() {
     var bg_img = $('#bg_img img');
-    
+
     page_height = $(window).height();
     page_width = $(window).width();
 
@@ -42,7 +46,7 @@ function resize_bg_img() {
         var img_new_width = page_width;
         var img_new_height = Math.ceil(img_orig_height / img_orig_width * img_new_width);
         var img_margin_top = - (page_height - img_new_height) / 2;
-        if (img_margin_top > 0) { 
+        if (img_margin_top > 0) {
             img_margin_top = - img_margin_top;
         }
         bg_img.css('height', img_new_height);
@@ -72,11 +76,12 @@ function init_index() {
         type:'POST',
         url:'db_ajax.php',
         success:function(data) {
-            var works = data.split('|---|');
+            var no_header = data.split('"/>');
+            var works = no_header[1].split('|---|');
             for (index in works) {
                 if (works[index] != '') {
                     var work_strs = works[index].split('||');
-                    var work = new Array();
+                    var work = {};
                     work['ID'] = work_strs[0];
                     work['ProjectName'] = work_strs[1];
                     work['Information'] = work_strs[2];
@@ -90,12 +95,37 @@ function init_index() {
                     work['Chronology'] = work_strs[10];
                     work['Location'] = work_strs[11];
                     work['Directory'] = work_strs[12];
+                    work['ProjectNameSC'] = work_strs[13];
+                    work['InformationSC'] = work_strs[14];
+                    work['BriefSC'] = work_strs[15];
+                    work['StatusSC'] = work_strs[16];
+                    work['CategorySC'] = work_strs[17];
+                    work['ProjectNameTC'] = work_strs[18];
+                    work['InformationTC'] = work_strs[19];
+                    work['BriefTC'] = work_strs[20];
+                    work['StatusTC'] = work_strs[21];
+                    work['CategoryTC'] = work_strs[22];
+                    work['LocationSC'] = work_strs[23];
+                    work['LocationTC'] = work_strs[24];
                     work_arr.push(work);
                 }
             }
+            load_bg_imgs();
             init_data();
         }
     });
+}
+
+function init_lang() {
+    $.ajax({
+        type:'POST',
+        url:'get_lang.php',
+        success:function(data) {
+            lang = data;
+            init_index();
+        }
+    });
+
 }
 
 function load_bg_imgs() {
@@ -104,18 +134,57 @@ function load_bg_imgs() {
             var img = new Image();
             var img_arr = work_arr[index]['BackgroundImage'];
             var imgs = img_arr.split(';');
-            var img = imgs[Math.floor(Math.random() * imgs.length)]
-            img.src = work_arr[index]['Directory'] + '/images/' + img;
-            bg_img_arr.push(img.src);
+            for(i in imgs){
+                if(imgs[i]!=""){
+                    img.src = work_arr[index]['Directory'] + '/images/' + imgs[i];
+                    bg_img_arr.push(img.src);
+                    $.ajax({
+                        type:'GET',
+                        url:img.src,
+                        success:function(){
+                            loaded ++;
+                            refreshProgressBar();
+                        }
+                    })
+                }
+            }
+            
         }
     }
-    $('body').css('visibility', 'visible');
+    total=bg_img_arr.length;
+//    $('body').css('visibility', 'visible');
+}
+
+function refreshProgressBar(){
+    $("#loading_text").html(Math.floor(loaded/total*100)+'%');
+    if(loaded == total){
+        $("#loading").css("display","none");
+        window.setTimeout(function(){
+            $("#container").css("display","block");
+            $("#bg_img").css("display","block");
+        }, 200);
+    }
+        
 }
 
 function init_data() {
+    
+    if (lang == 'en') {
+        $('#container').css('font-size', '11px');
+    } else {
+        $('#container').css('font-size', '14px');
+    }
+
     var lists = '';
     for (index in work_arr) {
-        var value = work_arr[index]['ProjectName'];
+        var value;
+        if (lang == 'sc') {
+            value = work_arr[index]['ProjectNameSC'];
+        } else if (lang == 'tc') {
+            value = work_arr[index]['ProjectNameTC'];
+        } else {
+            value = work_arr[index]['ProjectName'];
+        }
         lists += '<li id=\'' + work_arr[index]['ID'] + '\'>' + value + '</li>';
     }
     $('#middle_container ul').html(lists);
@@ -213,7 +282,7 @@ function update_entries() {
     right_dot_count = 0;
     var entries = $('#middle_container ul li');
     var act_entry = $('#middle_container').find('#' + curr_id);
-    // entries.css('color', '#000'); // 666 originally 
+    // entries.css('color', '#000'); // 666 originally
     entries.css('font-weight', 'normal');
     entries.css('cursor', 'default');
     // act_entry.css('color', '#000'); // 333 originally
@@ -297,7 +366,9 @@ function update_background() {
                             $('#bg_img').animate({
                                 opacity:0.75,
                             }, 150);
+                            
                         });
+                        
                     }
                 });
             }
@@ -308,7 +379,9 @@ function update_background() {
 }
 
 $(function() {
-    load_bg_imgs();
+    init_lang();
+
+    // init_index();
 
     page_height = $(window).height();
     page_width = $(window).width();
@@ -321,15 +394,15 @@ $(function() {
     $('#employment').css('margin-right', '0px');
 
     resize_container();
-    
+
     $(window).resize(function() {
         resize_bg_img();
         resize_container();
     });
 
-    init_index();
     $('#middle_container').scroll();
 
     $('body').css('visibility', 'visible');
+
 });
 

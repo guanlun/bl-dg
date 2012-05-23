@@ -58,17 +58,7 @@ $(function() {
             if (!logo_clicked) {
                 logo_clicked = true;
                 $('#logo_container').css('cursor', 'default');
-                var anim = setInterval(function() {
-                    img_width *= 1.008;
-                    img_height *= 1.008;
-                    logo.css('width', img_width);
-                    logo.css('height', img_height);
-                    logo.css('left', (ctn_width - img_width) / 2);
-                    logo.css('top', (ctn_height - img_height) / 2);
-                    if (img_width >= 350) {
-                        clearInterval(anim);
-                    }
-                }, 5);
+                logo.addClass('logo_scale_in');
 
                 setTimeout(function() {
                     $('body').css('overflow', 'hidden');
@@ -86,23 +76,13 @@ $(function() {
                         $('body').css('overflow', 'auto');
                     });
 
-                    var anim = setInterval(function() {
-                        img_width /= 1.008;
-                        img_height /= 1.008;
-                        logo.css('width', img_width);
-                        logo.css('height', img_height);
-                        logo.css('left', (ctn_width - img_width) / 2);
-                        logo.css('top', (ctn_height - img_height) / 2);
-                        if (img_width <= 60) {
-                            clearInterval(anim);
+                    logo.addClass('logo_scale_out');
                             setTimeout(function() {
                                 lang_sel.addClass('langsel_fadein');
                                 setTimeout(function() {
                                     lang_sel.css('opacity', '1.0');
                                 }, 1500);
-                            }, 500);
-                        }
-                    }, 5);
+                            }, 1500);
 
                 }, 2500);
             }

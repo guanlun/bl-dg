@@ -179,9 +179,9 @@ jQuery.fn.gallery = function() {
             display.animate( {
                 opacity: 0.0,
             }, 100, function() {
-                if (videosrc != "") {
+                if(videosrc != ""){
                     set_video(src, videosrc);
-                } else {
+                }else{
                     set_img(src);
                 }
                 display.animate( {

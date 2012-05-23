@@ -12,7 +12,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+        <meta http-equiv="Content-Type" content="text/html;charset=gbk"/>
         <title>BL-DG/Research</title>
         <link href="../css/sample.css" rel="stylesheet"/>
         <link rel="SHORTCUT ICON" href="/tabicon.ico"/>
@@ -30,24 +30,54 @@
             <div id='inner_container'>
                 <div id='left_container'>
                     <div id='title_view'>
-                        <? echo $data['Name']; ?>
+                        <? 
+                            if ($lang == 'sc') {
+                                echo $data['NameSC'];
+                            } else if ($lang == 'tc') {
+                                echo $data['NameTC'];
+                            } else {
+                                echo $data['Name'];
+                            }
+                        ?>
                     </div>
                     <div id='info_view'>
                         <? 
                             $filename = $data['Info'];
+                            if ($lang == 'sc') {
+                                $filename = $data['InfoSC'];
+                            } else if ($lang == 'tc') {
+                                $filename = $data['InfoTC'];
+                            }
                             $handle = fopen($filename, 'r'); 
                             $content = fread($handle, filesize($filename));
-                            echo $content;
+                            // $content = iconv('gbk', 'gb2312', $content);
+                            echo $content . '<br />';
                         ?>
                     </div>
                     <div id='research_list'>
-                        <div id='research_list_title'>Research Project List</div>
+                        <div id='research_list_title'>
+                            <?
+                                if ($lang == 'sc') {
+                                    echo '研究类项目列表';
+                                } else if ($lang == 'tc') {
+                                    echo '研究類項目列表';
+                                } else {
+                                    echo 'Research Project List';
+                                }
+                            ?>
+                        </div>
                         <div id='research_list_items'>
                             <ul>
                                 <?
                                     $researches = get_all_researches();
                                     foreach ($researches as $r) {
-                                        echo '<li id=\'' . $r['Directory'] . '\'>' . $r['Name'] . '</li>';
+                                        if ($lang == 'sc') {
+                                            echo '<li id=\'' . $r['Directory'] . '\'>' . $r['NameSC'] . '</li>';
+                                        } else if ($lang == 'tc') {
+                                            echo '<li id=\'' . $r['Directory'] . '\'>' . $r['NameTC'] . '</li>';
+                                        } else {
+                                            echo '<li id=\'' . $r['Directory'] . '\'>' . $r['Name'] . '</li>';
+                                        }
                                     }
                                 ?>
                             </ul>

@@ -40,18 +40,6 @@ a:hover {
     border-bottom:1px solid #000;
 }
 
-#nav_bar ul {
-    margin-left: 70px;
-}
-
-#nav_bar ul li {
-    display:inline;
-    float:left;
-    margin-left:50px;
-    margin-right:50px;
-    color:#000;
-    font-size:12pt;
-}
 
 #inner_container {
     margin-top:10px;
@@ -88,6 +76,7 @@ a:hover {
     padding-left:20px;
     padding-right:20px;
     border-right:1px solid #666;
+    padding-bottom:50px;
 }
 
 #news_view_scn {
